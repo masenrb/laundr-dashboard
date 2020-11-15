@@ -7,7 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from './Title';
-import userData from '../data/User_Data.json';
+import userData from '../User_Data.json';
 import { mainListItems } from '../listItems';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';

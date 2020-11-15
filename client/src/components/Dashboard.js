@@ -22,7 +22,7 @@ import { mainListItems, secondaryListItems } from '../listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Users from './Users';
-import Orders from '../Orders';
+import Orders from './Orders';
 import Subcription from './Subscription';
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
