@@ -3,7 +3,9 @@ const path = require('path'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
-    exampleRouter = require('../routes/examples.server.routes');
+    userRouter = require('../routes/userRouter'),
+    orderRouter = require('../routes/orderRouter'),
+    subscriptionRouter = require('../routes/subscriptionRouter');
 
 module.exports.init = () => {
     /* 
@@ -11,7 +13,7 @@ module.exports.init = () => {
         - reference README for db uri
     */
     mongoose.connect(process.env.DB_URI || require('./config').db.uri, {
-        useNewUrlParser: true
+        useNewUrlParser: true,
     });
     mongoose.set('useCreateIndex', true);
     mongoose.set('useFindAndModify', false);
@@ -26,7 +28,10 @@ module.exports.init = () => {
     app.use(bodyParser.json());
 
     // add a router
-    app.use('/api/example', exampleRouter);
+    app.use('/api/users/', userRouter);
+    app.use('/api/orders/', orderRouter);
+    app.use('/api/subscriptions/', subscriptionRouter);
+
 
     if (process.env.NODE_ENV === 'production') {
         // Serve any static files
