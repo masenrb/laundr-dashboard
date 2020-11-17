@@ -10,6 +10,7 @@ import Customers from "./components/Users";
 import Orders from "./components/Orders";
 import Subscriptions from "./components/Subscription";
 import { useAuth0 } from '@auth0/auth0-react';
+import history from "./utils/history";
 
 function App() {
   const { isLoading } = useAuth0();
@@ -17,7 +18,7 @@ function App() {
   if (isLoading) return <div>Loading...</div>
 
   return (
-    <BrowserRouter>
+    <BrowserRouter history={history}>
     <div>
       <Navigation />
       <Switch>

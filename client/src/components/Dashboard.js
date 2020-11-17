@@ -25,6 +25,9 @@ import Users from './Users';
 import Orders from './Orders';
 import Subcription from './Subscription';
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import Loading from "./Loading";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import SignOut from "./SignOut";
 
 const theme = createMuiTheme({
   palette: {
@@ -135,7 +138,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+export const Dashboard = () => {
+  const { user, isAuthenticated, loginWithRedirect, logout, } = useAuth0();
+  const logoutWithRedirect = () =>
+    logout({
+      returnTo: window.location.origin,
+    });
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -213,5 +222,10 @@ export default function Dashboard() {
       </main>
       </ThemeProvider>
     </div>
+    
   );
-}
+};
+
+export default withAuthenticationRequired(Dashboard, {
+  onRedirecting: () => <Loading />,
+});
