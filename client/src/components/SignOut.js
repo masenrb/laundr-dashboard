@@ -30,9 +30,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignOut() {
+const SignOut = () => {
   const classes = useStyles();
   const { logout, isAuthenticated} = useAuth0();
+  const logoutWithRedirect = () =>
+    logout({
+      returnTo: window.location.origin,
+    });
 
   return (
     isAuthenticated && (
@@ -40,7 +44,7 @@ export default function SignOut() {
         <CssBaseline />
         <div className={classes.paper}>
           <Typography component="h1" variant="h5">
-            Sign in
+            Sign Out
           </Typography>
           <form className={classes.form} noValidate>
             <Button
@@ -49,7 +53,7 @@ export default function SignOut() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={() => logout()}
+              onClick={() => logoutWithRedirect()}
             >
               Sign Out
             </Button>
@@ -61,4 +65,6 @@ export default function SignOut() {
       </Container>
     )
   );
-}
+};
+
+export default SignOut;

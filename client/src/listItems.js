@@ -49,6 +49,15 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Subscriptions" />
     </ListItem>
+    <ListItem 
+      button
+      key="Log Out"
+      component={NavLink} to="/logout">
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      <ListItemText primary="Log Out" />
+    </ListItem>
   </div>
 );
 
