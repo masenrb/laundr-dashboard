@@ -6,6 +6,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import TablePagination from '@material-ui/core/TablePagination';
 import Title from './Title';
 import userData from '../User_Data.json';
 import { mainListItems } from '../listItems';
@@ -128,6 +129,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Orders() {
+  var numRows;
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
@@ -136,6 +138,19 @@ export default function Orders() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   return (
     <React.Fragment>
       <ThemeProvider theme = {theme}>
@@ -193,7 +208,7 @@ export default function Orders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {userData.map((row, i) => (
+          {userData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, i) => (
             <TableRow key={i}>
               <TableCell>{row.username}</TableCell>
               <TableCell>{row.email}</TableCell>
@@ -202,11 +217,15 @@ export default function Orders() {
           ))}
         </TableBody>
       </Table>
-      <div className={classes.seeMore}>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          See more users
-        </Link>
-      </div>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 50, 100, 250, 500]}
+        component="div"
+        count={userData.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onChangePage={handleChangePage}
+        onChangeRowsPerPage={handleChangeRowsPerPage} >
+      </TablePagination>
       </Paper>
       </Grid>
       </Container>

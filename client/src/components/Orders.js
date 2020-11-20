@@ -7,6 +7,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import TablePagination from '@material-ui/core/TablePagination';
 import Title from './Title';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
@@ -137,6 +138,18 @@ export default function Orders() {
     setOpen(false);
   };
 
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   return (
     <React.Fragment>
       <ThemeProvider theme = {theme}>
@@ -199,7 +212,7 @@ export default function Orders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {orderData.map((row, i) => (
+          {orderData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, i) => (
             <TableRow key={i}>
               <TableCell>{row.orderNumber}</TableCell>
               <TableCell>{row.name}</TableCell>
@@ -213,11 +226,15 @@ export default function Orders() {
           ))}
         </TableBody>
       </Table>
-      <div className={classes.seeMore}>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          See more orders
-        </Link>
-      </div>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 50, 100, 250, 500]}
+        component="div"
+        count={orderData.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onChangePage={handleChangePage}
+        onChangeRowsPerPage={handleChangeRowsPerPage} >
+      </TablePagination>
       </Paper>
       </Grid>
       </Container>
