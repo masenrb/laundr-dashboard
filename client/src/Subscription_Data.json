@@ -1,4 +1,4 @@
-[{"name":"Alwyn","isActive":true,"subscriptionType":"plus","startDate":"10/6/2020","renewalDate":"11/1/2020","maxLbs":66,"currentLbs":1},
+[{"name":"Alwyn","isActive":"true","subscriptionType":"plus","startDate":"10/6/2020","renewalDate":"11/1/2020","maxLbs":66,"currentLbs":1},
 {"name":"Sidonnie","isActive":false,"subscriptionType":"none","startDate":"10/17/2020","renewalDate":"11/5/2020","maxLbs":0,"currentLbs":0},
 {"name":"Leeann","isActive":false,"subscriptionType":"none","startDate":"10/15/2020","renewalDate":"11/16/2020","maxLbs":0,"currentLbs":0},
 {"name":"Jodi","isActive":true,"subscriptionType":"standard","startDate":"10/29/2020","renewalDate":"11/14/2020","maxLbs":48,"currentLbs":42},
