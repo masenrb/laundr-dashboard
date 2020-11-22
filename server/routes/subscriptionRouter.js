@@ -8,5 +8,6 @@ router.get('/', subscriptionController.getAllSubscriptions);
 router.get('/:subscriptionId', subscriptionController.read);
 
 router.post('/', subscriptionController.create);
+//test
 
 module.exports = router;
