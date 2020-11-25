@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
+import { fade, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TablePagination from '@material-ui/core/TablePagination';
 import Title from './Title';
 import userData from '../User_Data.json';
+import data from '../User_Data.json';
 import { mainListItems } from '../listItems';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
@@ -27,8 +28,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import SearchBar from "material-ui-search-bar";
+import SearchIcon from '@material-ui/icons/Search';
+import InputBase from '@material-ui/core/InputBase';
+import TextField from '@material-ui/core/TextField';
 
-//test comment
 const theme = createMuiTheme({
   palette: {
      primary: {
@@ -94,6 +98,30 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
+  search: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(3),
+      width: 'auto',
+    },
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   drawerPaperClose: {
     overflowX: 'hidden',
     transition: theme.transitions.create('width', {
@@ -129,8 +157,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Orders() {
-  var numRows;
+export default function Customers() {
+  /*
+  useEffect(() => {
+    fetch('http://localhost:5000/api/users')
+      .then(data => console.log(data));
+  });
+  */
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
@@ -140,6 +173,39 @@ export default function Orders() {
     setOpen(false);
   };
   
+  const [search, setSearch] = React.useState(data);
+  const setSearchValue = (value) => {
+    if (value.length == 0)
+      setSearch(userData);
+    else
+      setSearch(getFilteredData(value, data));
+  }
+  const getFilteredData = (value, data) => {
+    let results = [];
+    results = data.filter((data) => {
+      return (
+        value.length > 0 &&
+        data.username
+          .toLowerCase()
+          .indexOf(value.toLowerCase().trim()) !== -1
+      );
+    });
+    //if search by username returns nothing, search by email instead
+    if (results.length === 0) {
+      data.filter((data) => {
+        if (data.email.indexOf(value) !== -1) {
+          results.push(data);
+        }
+      });
+      //remove duplicates
+      const unique = new Set(results);
+      //change it back to an array and return it
+      results = [...unique];
+      return results;
+    }
+    return results;
+  }
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -177,6 +243,7 @@ export default function Orders() {
           </IconButton>
         </Toolbar>
       </AppBar>
+      
       <Drawer
         variant="persistent"
         classes={{
@@ -200,6 +267,9 @@ export default function Orders() {
             
         <Paper elevation={3}>
       <Title>Current Users</Title>
+      <form className={classes.root}>
+      <TextField id="outlined-basic" label="Search..." variant="outlined" onChange={(e) => setSearchValue(e.target.value)}/>
+            </form>
       <Table size="small">
         <TableHead>
           <TableRow>
@@ -209,7 +279,7 @@ export default function Orders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {userData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, i) => (
+          {search.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, i) => (
             <TableRow key={i}>
               <TableCell>{row.username}</TableCell>
               <TableCell>{row.email}</TableCell>
@@ -221,7 +291,7 @@ export default function Orders() {
       <TablePagination
         rowsPerPageOptions={[5, 10, 50, 100, 250, 500]}
         component="div"
-        count={userData.length}
+        count={search.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onChangePage={handleChangePage}
