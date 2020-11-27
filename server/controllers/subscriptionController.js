@@ -48,3 +48,60 @@ exports.getAllSubscriptions = async (req, res) => {
     res.json(data);
   });
 };
+
+exports.readByName = async (req, res) => {
+  let tempSub = req.params.name;
+  console.log(tempSub);
+  await Subscription.find({ name: tempSub })
+    .then((subscription) => {
+      if (!subscription) {
+        return res.status(200).send({
+          error: "Subscription not found with an name: " + tempSub,
+        });
+      }
+      res.json(subscription);
+    })
+    .catch((err) => {
+      res.status(200).send({
+        error: err.message || "An unknown error has occurred.",
+      });
+    });
+};
+
+exports.readByType = async (req, res) => {
+  let tempSub = req.params.subscriptionType;
+  console.log(tempSub);
+  await Subscription.find({ subscriptionType: tempSub })
+    .then((subscription) => {
+      if (!subscription) {
+        return res.status(200).send({
+          error: "Subscription not found with type: " + tempSub,
+        });
+      }
+      res.json(subscription);
+    })
+    .catch((err) => {
+      res.status(200).send({
+        error: err.message || "An unknown error has occurred.",
+      });
+    });
+};
+
+exports.readByStartDate = async (req, res) => {
+  let tempSub = req.params.startDate;
+  console.log(tempSub);
+  await Subscription.find({ startDate: tempSub })
+    .then((subscription) => {
+      if (!subscription) {
+        return res.status(200).send({
+          error: "Subscription not found with start date: " + tempSub,
+        });
+      }
+      res.json(subscription);
+    })
+    .catch((err) => {
+      res.status(200).send({
+        error: err.message || "An unknown error has occurred.",
+      });
+    });
+};

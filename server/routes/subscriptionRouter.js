@@ -9,4 +9,8 @@ router.get('/:subscriptionId', subscriptionController.read);
 
 router.post('/', subscriptionController.create);
 
+router.get('/getname/:name', subscriptionController.readByName);
+router.get('/gettype/:subscriptionType', subscriptionController.readByType);
+router.get('/getstartdate/:startDate', subscriptionController.readByStartDate);
+
 module.exports = router;
