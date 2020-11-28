@@ -32,14 +32,15 @@ import SearchBar from "material-ui-search-bar";
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import TextField from '@material-ui/core/TextField';
+import { CSVLink } from "react-csv";
 
 const theme = createMuiTheme({
   palette: {
      primary: {
-        main: "#01C9E1" // This is an orange looking color
+        main: "#01C9E1" 
                },
      secondary: {
-        main: "##676767" //Another orange-ish color
+        main: "##676767" 
                 }
            },
 fontFamily: 'Calmer' // as an aside, highly recommend importing roboto font for Material UI projects! Looks really nice
@@ -236,11 +237,7 @@ export default function Customers() {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Users
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
+          
         </Toolbar>
       </AppBar>
       
@@ -287,6 +284,9 @@ export default function Customers() {
             </TableRow>
           ))}
         </TableBody>
+        <CSVLink data={userData} filename={"User_Data.csv"} className="btn btn-secondary">
+            Download Data
+          </CSVLink>
       </Table>
       <TablePagination
         rowsPerPageOptions={[5, 10, 50, 100, 250, 500]}

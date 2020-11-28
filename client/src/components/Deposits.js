@@ -3,6 +3,9 @@ import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Title from './Title';
+import orderData from '../Order_Data.json';
+import subData from '../Subscription_Data.json';
+import userData from '../User_Data.json';
 
 function preventDefault(event) {
   event.preventDefault();
@@ -18,18 +21,25 @@ export default function Deposits() {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Title>Recent Orders</Title>
-      <Typography component="p" variant="h4">
-        $3,024.00
+      <Title>Laundr Summary</Title>
+      <Typography component="p" variant="h6">
+        Total Users
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>
-        on 15 March, 2020
+        {Object.keys(userData).length}
       </Typography>
-      <div>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          View details
-        </Link>
-      </div>
+      <Typography component="p" variant="h6">
+        Active Subscriptions
+      </Typography>
+      <Typography color="textSecondary" className={classes.depositContext}>
+        {Object.keys(subData).length}
+      </Typography>
+      <Typography component="p" variant="h6">
+        Lifetime Orders
+      </Typography>
+      <Typography color="textSecondary" className={classes.depositContext}>
+        {Object.keys(orderData).length}
+      </Typography>
     </React.Fragment>
   );
 }

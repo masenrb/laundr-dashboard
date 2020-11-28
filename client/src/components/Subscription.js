@@ -29,6 +29,7 @@ import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import { CSVLink } from "react-csv";
 
 function preventDefault(event) {
   event.preventDefault();
@@ -203,11 +204,6 @@ export default function Subscriptions() {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Subscriptions
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -261,6 +257,9 @@ export default function Subscriptions() {
             </TableRow>
           ))}
         </TableBody>
+        <CSVLink data={subData} filename={"Subscription_Data.csv"} className="btn btn-secondary">
+            Download Data
+          </CSVLink>
       </Table>
       <TablePagination
         rowsPerPageOptions={[5, 10, 50, 100, 250, 500]}
