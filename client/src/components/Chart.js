@@ -8,17 +8,29 @@ var weekLabels = ['1/1', '1/2', '1/3', '1/4', '1/5', '1/6', '1/7']
 var monthLabels = ['1/1', '2/1', '3/1', '4/1', '5/1', '6/1', '7/1']
 var defaultLabels = ['1/1', '2/1', '3/1', '4/1', '5/1', '6/1', '7/1']
 
+var RandomOrg = require('random-org');
+
 const Chart = () =>{
 const [chartData, setChartData] = useState({});
+    let default_color  = 'rgba(1, 201, 225, 1)';
+
+    var random = new RandomOrg({ apiKey: '15aa22b5-8b99-444f-9287-4e704cfe66b0' });
+    let maybe = random.generateIntegers({ min: 0, max: 255, n: 3 })
+        .then(function(result) {
+            console.log(result.random.data); // [55, 3]
+        });
+
+    let random_color = random.generateIntegers({ min: 0, max: 255, n: 3 });
+    console.log(random);
+    console.log(maybe);
+    console.log(random_color);
 
     const chart = () =>{
         setChartData({
             labels:defaultLabels, 
             datasets: [{
-                    label: 'Sales',
                     data: DefaultData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
-                    borderColor:['rgba(1, 201, 225, 1)']
                 }
             ]
         })
@@ -33,7 +45,6 @@ const [chartData, setChartData] = useState({});
                     label: 'Sales',
                     data: MonthData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
-                    borderColor:['rgba(1, 201, 225, 1)']
                 }
             ]
         })
@@ -46,11 +57,9 @@ const [chartData, setChartData] = useState({});
                     label: 'Sales',
                     data: WeekData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
-                    borderColor:['rgba(1, 201, 225, 1)']
                 }
             ]
         })
-        
     }
     
 return(
