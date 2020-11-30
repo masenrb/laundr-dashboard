@@ -44,7 +44,6 @@ const [chartData, setChartData] = useState({});
         setChartData({
             labels:monthLabels, 
             datasets: [{
-                    label: 'Sales',
                     data: MonthData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                 }
@@ -56,7 +55,6 @@ const [chartData, setChartData] = useState({});
         setChartData({
             labels:weekLabels, 
             datasets: [{
-                    label: 'Sales',
                     data: WeekData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                 }
