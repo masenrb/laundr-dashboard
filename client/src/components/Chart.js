@@ -1,12 +1,14 @@
 import React, {Component, useEffect, useState} from 'react';
 import {Line} from 'react-chartjs-2';
+import MonthDays, {weekDays, YearDays} from './ChartData';
 
 var WeekData = [2, 4, 6, 8, 3, 4, 4]
-var MonthData = [1, 3, 4, 4, 3, 5, 8]
-var DefaultData = [1, 3, 4, 4, 3, 5, 8] //make sure we have the same data for Month and Default
-var weekLabels = ['1/1', '1/2', '1/3', '1/4', '1/5', '1/6', '1/7']
-var monthLabels = ['1/1', '2/1', '3/1', '4/1', '5/1', '6/1', '7/1']
-var defaultLabels = ['1/1', '2/1', '3/1', '4/1', '5/1', '6/1', '7/1']
+var MonthData = [1, 3, 4, 4, 3, 5, 8, 1, 3, 4, 4, 3, 5, 8, 1, 3, 4, 4, 3, 5, 8, 1, 3, 4, 4, 3, 5, 8, 2, 2]
+var DefaultData = [2, 4, 6, 8, 3, 4, 4] //make sure we have the same data for week and Default
+var weekLabels = weekDays;
+var monthLabels = MonthDays;
+var defaultLabels = weekDays;
+
 
 var RandomOrg = require('random-org');
 
