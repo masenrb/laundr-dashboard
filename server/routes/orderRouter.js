@@ -2,10 +2,8 @@ const orderController = require('../controllers/orderController.js'),
     express = require('express'), 
     orderRouter = express.Router()
 
-//router.get('/:orderId', orderController.readByID);
-module.exports = router;
 orderRouter.get('/', orderController.getAllOrders);
-orderRouter.get('/:orderId', orderController.read);
+orderRouter.get('/:orderId', orderController.read); //Look at later
 orderRouter.post('/', orderController.create);
 orderRouter.get('/getordernumber/:orderNumber', orderController.readByOrderNumber);
 orderRouter.get('/getname/:name', orderController.readByName);
