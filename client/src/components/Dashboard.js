@@ -21,22 +21,37 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from '../listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
-import Users from './Users';
 import Orders from './Orders';
 import Subcription from './Subscription';
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import Loading from "./Loading";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import SignOut from "./SignOut";
+import orderData from '../Order_Data.json';
 
 const theme = createMuiTheme({
+  overrides: {
+    MuiListItem: {
+      root: {
+        "&$selected": {
+          backgroundColor: "#FF5A39",
+          "&:hover": {
+            backgroundColor: "#ff6f53",
+          },
+        },
+      },
+    },
+  },
   palette: {
      primary: {
         main: "#01C9E1" // This is an orange looking color
                },
      secondary: {
         main: "##676767" //Another orange-ish color
-                }
+                },
+     background: {
+        default: '#f9f9f9',
+     }
            },
 fontFamily: 'Calmer' // as an aside, highly recommend importing roboto font for Material UI projects! Looks really nice
 });
@@ -174,11 +189,6 @@ export const Dashboard = () => {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Dashboard
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -208,7 +218,7 @@ export const Dashboard = () => {
                 <Chart />
               </Paper>
             </Grid>
-            {/* Recent Orders */}
+            {/* Quick Look*/}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
                 <Deposits />

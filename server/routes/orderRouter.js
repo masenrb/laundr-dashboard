@@ -1,31 +1,20 @@
 const orderController = require('../controllers/orderController.js'),
     express = require('express'), 
-    router = express.Router()
+    orderRouter = express.Router()
 
-
-router.get('/', orderController.getAllOrders);
-
-router.get('/:orderId', orderController.readByID);
-
-
-router.get('/getordernumber/:orderNumber', orderController.readByOrderNumber);
-
-router.get('/getordername/:orderName', orderController.readByOrderName);
-
-router.get('/getpickuptime/:pickupTime', orderController.readByPickupTime);
-
-router.get('/getdeliverytime/:deliveryTime', orderController.readByDeliveryTime);
-
-router.get('/getdrivername/:driverName', orderController.readByDriverName);
-
-router.get('/getcustomeraddress/:address', orderController.readByAddress);
-
-router.get('/getorderstatus/:status', orderController.readByStatus);
-
-router.get('/getorderweight/:weight', orderController.readByWeight);
-
-
-router.post('/', orderController.create); 
-
-
+//router.get('/:orderId', orderController.readByID);
 module.exports = router;
+orderRouter.get('/', orderController.getAllOrders);
+orderRouter.get('/:orderId', orderController.read);
+orderRouter.post('/', orderController.create);
+router.get('/getordernumber/:orderNumber', orderController.readByOrderNumber);
+orderRouter.get('/getname/:name', orderController.readByName);
+orderRouter.get('/gettime/:pickupTime', orderController.readByPickUpTime);
+orderRouter.get('/getdrivername/:driverName', orderController.readByDriverName);
+orderRouter.get('/getnumber/:orderNumber', orderController.readByOrderNumber);
+orderRouter.get('/getaddress/:customerAddress', orderController.readByCustomerAddress);
+orderRouter.get('/getstatus/:orderStatus', orderController.readByOrderStatus);
+orderRouter.get('/getweight/:orderWeight', orderController.readByWeight);
+
+
+module.exports = orderRouter;
