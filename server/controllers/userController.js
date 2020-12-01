@@ -39,7 +39,6 @@ exports.readByID = async (req, res) => {
 
 exports.readByUsername = async (req, res) => {
   let tempUser = req.params.username;
-  console.log(tempUser);
   await User.find({ username: tempUser })
     .then((user) => {
       if (!user) {
