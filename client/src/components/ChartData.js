@@ -1,19 +1,10 @@
 import userData from '../User_Data.json';
+import Axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
-let userCreatedDates = [];
-for (var i = 0; i < userCreatedDates.length; i++) {
-    userCreatedDates[i] = [];
-}
-for (var key in userData) {
-    if(userData.hasOwnProperty(key)) {
-        var value = userData[key];
-        userCreatedDates.push(value.accountCreatedDate);
-    }  
-}
 
-for (var i in userCreatedDates) {
-    console.log(userCreatedDates)
-}
+
+//Axios.get('http://localhost:5000/api/users/getaccount/31.03.2020').then(response => {console.log(response)});
 
 var MonthDays = []; 
 for(var i = 0; i < 30; i++){
@@ -51,7 +42,6 @@ for(var j = 0; j < 12; j++){
     var D = mm + '/1'; 
     YearDays.push(D);
 }
-
 
 export default MonthDays;
 export {weekDays, YearDays};

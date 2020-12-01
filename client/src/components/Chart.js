@@ -2,6 +2,7 @@ import React, {Component, useEffect, useState} from 'react';
 import {Line} from 'react-chartjs-2';
 import MonthDays, {weekDays, YearDays} from './ChartData';
 import userData from '../User_Data.json';
+import Axios from 'axios';
 
 var WeekData = [2, 4, 6, 8, 3, 4, 4]
 var MonthData = [1, 3, 4, 4, 3, 5, 8, 1, 3, 4, 4, 3, 5, 8, 1, 3, 4, 4, 3, 5, 8, 1, 3, 4, 4, 3, 5, 8, 2, 2]
@@ -13,20 +14,26 @@ var defaultLabels = weekDays;
 
 var RandomOrg = require('random-org');
 
-const Chart = () =>{
-const [chartData, setChartData] = useState({});
-    /*let default_color  = 'rgba(1, 201, 225, 1)';
+export default function Chart() {
+    const [chartData, setChartData] = useState({});
+    const [userCreationData, setUserCreationData] = useState([]);
+    const [subData, setSubData] = useState([]);
+    const [orderDateData, setOrderDateData] = useState([]);
 
-    var random = new RandomOrg({ apiKey: '15aa22b5-8b99-444f-9287-4e704cfe66b0' });
-    let maybe = random.generateIntegers({ min: 0, max: 255, n: 3 })
-        .then(function(result) {
-            //console.log(result.random.data); // [55, 3]
-        });
-        */
-    //let random_color = random.generateIntegers({ min: 0, max: 255, n: 3 });
-    //console.log(random);
-    //console.log(maybe);
-    //console.log(random_color);
+    useEffect(() => {
+        const fetchData = async () => {
+            const result1 = await Axios.get('http://localhost:5000/api/users/getaccount/3-20-2017');
+            const result2 = await Axios.get('http://localhost:5000/api/subscriptions/getstartdate/10-13-2020');
+
+            setUserCreationData(result1.data);
+            setSubData(result2.data);
+        };
+        
+        fetchData();
+    }, []);
+    
+    console.log(userCreationData.length);
+    console.log(subData.length);
 
     const chart = () =>{
         setChartData({
@@ -73,7 +80,4 @@ return(
     </div>
 )
     
-}
-
-
-export default Chart;
+};
