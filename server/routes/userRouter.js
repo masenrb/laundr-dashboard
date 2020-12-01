@@ -4,13 +4,14 @@ const userController = require('../controllers/userController.js'),
 
 userRouter.get('/', userController.getAllUsers);
 
-userRouter.get('/:userId', userController.read);
+userRouter.get('/:userId', userController.readByID);
   
 userRouter.post('/post', userController.create);
 
-//userRouter.get('/:userId', userRouter.read);
-// userRouter.put('/:footballClubId', userController.update);
-// userRouter.delete('/:footballClubId', userController.remove);
+userRouter.get('/getuser/:username', userController.readByUsername);
 
+userRouter.get('/getemail/:email', userController.readByEmail);
+
+userRouter.get('/getaccount/:accountDate', userController.readByAccountCreation);
 
 module.exports = userRouter;

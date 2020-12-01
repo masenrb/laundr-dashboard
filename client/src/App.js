@@ -22,8 +22,7 @@ function App() {
     <div>
       <Navigation />
       <Switch>
-        <Route path="/" component={SignIn} exact/>
-        <Route path="/home" component={Dashboard}/>
+        <Route path="/" component={Dashboard} exact/>
         <Route path="/Customers" component={Customers}/>
         <Route path="/Orders" component={Orders}/>
         <Route path="/Subscriptions" component={Subscriptions}/>

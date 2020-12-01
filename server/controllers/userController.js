@@ -19,7 +19,7 @@ exports.create = async (req, res) => {
 };
 
 /* Show the current User */
-exports.read = async (req, res) => {
+exports.readByID = async (req, res) => {
   let id = req.params.userId;
   await User.findById(id)
     .then((user) => {
@@ -36,6 +36,63 @@ exports.read = async (req, res) => {
       });
     });
 };
+
+exports.readByUsername = async (req, res) => {
+  let tempUser = req.params.username;
+  console.log(tempUser);
+  await User.find({ username: tempUser })
+    .then((user) => {
+      if (!user) {
+        return res.status(200).send({
+          error: "User not found with an username: " + tempUser,
+        });
+      }
+      res.json(user);
+    })
+    .catch((err) => {
+      res.status(200).send({
+        error: err.message || "An unknown error has occurred.",
+      });
+    });
+};
+
+exports.readByEmail = async (req, res) => {
+  let tempEmail = req.params.email;
+  await User.find({ email: tempEmail })
+    .then((user) => {
+      if (!user) {
+        return res.status(200).send({
+          error: "User not found with an email: " + tempEmail,
+        });
+      }
+      res.json(user);
+    })
+    .catch((err) => {
+      res.status(200).send({
+        error: err.message || "An unknown error has occurred.",
+      });
+    });
+};
+
+exports.readByAccountCreation = async (req, res) => {
+  let accCreation = req.params.accountDate;
+  await User.find({ accountCreatedDate: accCreation })
+    .then((user) => {
+      if (!user) {
+        return res.status(200).send({
+          error: "No users found created on: " + accCreation,
+        });
+      }
+      res.json(user);
+    })
+    .catch((err) => {
+      res.status(200).send({
+        error: err.message || "An unknown error has occurred.",
+      });
+    });
+};
+
+
 
 /* Retrieve all the directory, Users*/
 exports.getAllUsers = async (req, res) => {

@@ -16,7 +16,7 @@ export const mainListItems = (
     <ListItem 
       button
       key="Dashboard"
-      component={NavLink} to="/home">
+      component={NavLink} to="/">
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
@@ -51,7 +51,6 @@ export const mainListItems = (
     </ListItem>
     <ListItem 
       button
-      selected = {true}
       key="Log Out"
       component={NavLink} to="/logout">
       <ListItemIcon>
