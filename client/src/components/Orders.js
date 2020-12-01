@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import orderData from '../Order_Data.json';
+import data from '../Order_Data.json'
 import { mainListItems } from '../listItems';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
@@ -27,6 +28,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import TextField from '@material-ui/core/TextField';
+import { CSVLink } from "react-csv";
 
 function preventDefault(event) {
   event.preventDefault();
@@ -165,6 +168,39 @@ export default function Orders() {
     setPage(0);
   };
 
+  const [search, setSearch] = React.useState(data);
+  const setSearchValue = (value) => {
+    if (value.length == 0)
+      setSearch(orderData);
+    else
+      setSearch(getFilteredData(value, data));
+  }
+  const getFilteredData = (value, data) => {
+    let results = [];
+    results = data.filter((data) => {
+      return (
+        value.length > 0 &&
+        data.name
+          .toLowerCase()
+          .indexOf(value.toLowerCase().trim()) !== -1
+      );
+    });
+    //if search by username returns nothing, search by email instead
+    if (results.length === 0) {
+      data.filter((data) => {
+        if (data.customerAddress.indexOf(value) !== -1) {
+          results.push(data);
+        }
+      });
+      //remove duplicates
+      const unique = new Set(results);
+      //change it back to an array and return it
+      results = [...unique];
+      return results;
+    }
+    return results;
+  }
+
   return (
     <React.Fragment>
       <ThemeProvider theme = {theme}>
@@ -183,11 +219,6 @@ export default function Orders() {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Orders
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -213,6 +244,9 @@ export default function Orders() {
             
         <Paper elevation={3}>
       <Title>Current Orders</Title>
+      <form className={classes.root}>
+      <TextField id="outlined-basic" label="Search..." variant="outlined" onChange={(e) => setSearchValue(e.target.value)}/>
+            </form>
       <Table size="small">
         <TableHead>
           <TableRow>
@@ -227,7 +261,7 @@ export default function Orders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {orderData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, i) => (
+          {search.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, i) => (
             <TableRow key={i}>
               <TableCell>{row.orderNumber}</TableCell>
               <TableCell>{row.name}</TableCell>
@@ -240,11 +274,14 @@ export default function Orders() {
             </TableRow>
           ))}
         </TableBody>
+        <CSVLink data={orderData} filename={"Order_Data.csv"} className="btn btn-secondary">
+            Download Data
+          </CSVLink>
       </Table>
       <TablePagination
         rowsPerPageOptions={[5, 10, 50, 100, 250, 500]}
         component="div"
-        count={orderData.length}
+        count={search.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onChangePage={handleChangePage}

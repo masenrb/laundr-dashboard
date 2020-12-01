@@ -16,7 +16,7 @@ export const mainListItems = (
     <ListItem 
       button
       key="Dashboard"
-      component={NavLink} to="/home">
+      component={NavLink} to="/">
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>

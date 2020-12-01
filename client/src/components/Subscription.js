@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TablePagination from '@material-ui/core/TablePagination';
 import Title from './Title';
 import subData from '../Subscription_Data.json';
+import data from '../Subscription_Data.json';
 import { mainListItems } from '../listItems';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
@@ -27,6 +28,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import { CSVLink } from "react-csv";
 
 function preventDefault(event) {
   event.preventDefault();
@@ -153,6 +156,39 @@ export default function Subscriptions() {
     setOpen(false);
   };
 
+  const [search, setSearch] = React.useState(data);
+  const setSearchValue = (value) => {
+    if (value.length == 0)
+      setSearch(subData);
+    else
+      setSearch(getFilteredData(value, data));
+  }
+  const getFilteredData = (value, data) => {
+    let results = [];
+    results = data.filter((data) => {
+      return (
+        value.length > 0 &&
+        data.name
+          .toLowerCase()
+          .indexOf(value.toLowerCase().trim()) !== -1
+      );
+    });
+    //if search by username returns nothing, search by email instead
+    if (results.length === 0) {
+      data.filter((data) => {
+        if (data.subscriptionType.indexOf(value) !== -1) {
+          results.push(data);
+        }
+      });
+      //remove duplicates
+      const unique = new Set(results);
+      //change it back to an array and return it
+      results = [...unique];
+      return results;
+    }
+    return results;
+  }
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -183,11 +219,6 @@ export default function Subscriptions() {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Subscriptions
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -213,6 +244,9 @@ export default function Subscriptions() {
             
         <Paper elevation={3}>
       <Title>Current Subscribers</Title>
+      <form className={classes.root}>
+      <TextField id="outlined-basic" label="Search..." variant="outlined" onChange={(e) => setSearchValue(e.target.value)}/>
+            </form>
       <Table size="small">
         <TableHead>
           <TableRow>
@@ -226,7 +260,7 @@ export default function Subscriptions() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {subData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, i) => (
+          {search.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, i) => (
             <TableRow key={i}>
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.isActive}</TableCell>
@@ -238,11 +272,14 @@ export default function Subscriptions() {
             </TableRow>
           ))}
         </TableBody>
+        <CSVLink data={subData} filename={"Subscription_Data.csv"} className="btn btn-secondary">
+            Download Data
+          </CSVLink>
       </Table>
       <TablePagination
         rowsPerPageOptions={[5, 10, 50, 100, 250, 500]}
         component="div"
-        count={subData.length}
+        count={search.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onChangePage={handleChangePage}
