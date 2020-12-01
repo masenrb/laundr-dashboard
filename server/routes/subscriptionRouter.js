@@ -8,6 +8,7 @@ router.get('/', subscriptionController.getAllSubscriptions);
 router.get('/:subscriptionId', subscriptionController.read);
 
 router.post('/', subscriptionController.create);
+//test
 
 router.get('/getname/:name', subscriptionController.readByName);
 router.get('/gettype/:subscriptionType', subscriptionController.readByType);
