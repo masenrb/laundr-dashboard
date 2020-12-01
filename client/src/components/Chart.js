@@ -30,8 +30,8 @@ export default function Chart() {
         };
         
         fetchData();
-    }, []);
-    
+    }, []);1
+
     console.log(userCreationData.length);
     console.log(subData.length);
 
