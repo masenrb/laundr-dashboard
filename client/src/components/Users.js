@@ -35,13 +35,28 @@ import TextField from '@material-ui/core/TextField';
 import { CSVLink } from "react-csv";
 
 const theme = createMuiTheme({
+  overrides: {
+    MuiListItem: {
+      root: {
+        "&$selected": {
+          backgroundColor: "#FF5A39",
+          "&:hover": {
+            backgroundColor: "#ff6f53",
+          },
+        },
+      },
+    },
+  },
   palette: {
      primary: {
         main: "#01C9E1" 
                },
      secondary: {
-        main: "##676767" 
-                }
+        main: "##676767" //Another orange-ish color
+                },
+     background: {
+        default: '#f9f9f9',
+     }
            },
 fontFamily: 'Calmer' // as an aside, highly recommend importing roboto font for Material UI projects! Looks really nice
 });

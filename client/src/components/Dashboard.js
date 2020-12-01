@@ -30,13 +30,28 @@ import SignOut from "./SignOut";
 import orderData from '../Order_Data.json';
 
 const theme = createMuiTheme({
+  overrides: {
+    MuiListItem: {
+      root: {
+        "&$selected": {
+          backgroundColor: "#FF5A39",
+          "&:hover": {
+            backgroundColor: "#ff6f53",
+          },
+        },
+      },
+    },
+  },
   palette: {
      primary: {
         main: "#01C9E1" // This is an orange looking color
                },
      secondary: {
         main: "##676767" //Another orange-ish color
-                }
+                },
+     background: {
+        default: '#f9f9f9',
+     }
            },
 fontFamily: 'Calmer' // as an aside, highly recommend importing roboto font for Material UI projects! Looks really nice
 });
