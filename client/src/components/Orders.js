@@ -30,6 +30,7 @@ import Badge from '@material-ui/core/Badge';
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import TextField from '@material-ui/core/TextField';
 import { CSVLink } from "react-csv";
+import Axios from 'axios';
 
 function preventDefault(event) {
   event.preventDefault();
@@ -147,6 +148,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Orders() {
+
+  Axios.get('http://localhost:5000/api/orders/getDate/12-6-2016/').then(response => {console.log(response)});
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
@@ -258,6 +262,7 @@ export default function Orders() {
             <TableCell>Customer Address</TableCell>
             <TableCell>Order Status</TableCell>
             <TableCell>Order Weight</TableCell>
+            <TableCell>Order Date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -271,6 +276,7 @@ export default function Orders() {
               <TableCell>{row.customerAddress}</TableCell>
               <TableCell>{row.orderStatus}</TableCell>
               <TableCell>{row.orderWeight}</TableCell>
+              <TableCell>{row.orderDate}</TableCell>
             </TableRow>
           ))}
         </TableBody>
