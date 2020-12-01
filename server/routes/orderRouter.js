@@ -12,8 +12,8 @@ orderRouter.get('/getname/:name', orderController.readByName);
 orderRouter.get('/gettime/:pickupTime', orderController.readByPickUpTime);
 orderRouter.get('/getdrivername/:driverName', orderController.readByDriverName);
 orderRouter.get('/getnumber/:orderNumber', orderController.readByOrderNumber);
-orderRouter.get('/getaddress/:customerAddress', orderController.readByCustomerAddress);
-orderRouter.get('/getstatus/:orderStatus', orderController.readByOrderStatus);
+orderRouter.get('/getaddress/:customerAddress', orderController.readByAddress);
+orderRouter.get('/getstatus/:orderStatus', orderController.readByStatus);
 orderRouter.get('/getweight/:orderWeight', orderController.readByWeight);
 
 
