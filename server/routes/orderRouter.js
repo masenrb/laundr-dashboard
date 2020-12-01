@@ -3,7 +3,7 @@ const orderController = require('../controllers/orderController.js'),
     orderRouter = express.Router()
 
 orderRouter.get('/', orderController.getAllOrders);
-orderRouter.get('/:orderId', orderController.read); //Look at later
+orderRouter.get('/:orderId', orderController.readByID); //Look at later
 orderRouter.post('/', orderController.create);
 orderRouter.get('/getordernumber/:orderNumber', orderController.readByOrderNumber);
 orderRouter.get('/getname/:name', orderController.readByName);
