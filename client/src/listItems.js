@@ -51,7 +51,6 @@ export const mainListItems = (
     </ListItem>
     <ListItem 
       button
-      selected = {true}
       key="Log Out"
       component={NavLink} to="/logout">
       <ListItemIcon>
