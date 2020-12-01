@@ -15,4 +15,4 @@ orderRouter.get('/getstatus/:orderStatus', orderController.readByOrderStatus);
 orderRouter.get('/getweight/:orderWeight', orderController.readByWeight);
 
 
-module.exports = router;
+module.exports = orderRouter;
