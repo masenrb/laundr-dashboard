@@ -8,7 +8,8 @@ const orderSchema = new mongoose.Schema({
     driverName: {type: String, required: true},
     customerAddress: {type: String, required: true},
     orderStatus: {type: String, required: true},
-    orderWeight: {type: Number, required: true}
+    orderWeight: {type: Number, required: true},
+    orderDate: {type: String, required: true}
 },
     {collection: 'orders'}
 );
