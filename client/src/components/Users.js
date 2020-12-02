@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import Link from '@material-ui/core/Link';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -8,8 +8,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TablePagination from '@material-ui/core/TablePagination';
 import Title from './Title';
-import userData from '../User_Data.json';
-import data from '../User_Data.json';
+//import userData from '../User_Data.json';
+//import data from '../User_Data.json';
 import { mainListItems } from '../listItems';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
@@ -33,6 +33,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import TextField from '@material-ui/core/TextField';
 import { CSVLink } from "react-csv";
+import Axios from 'axios';
 
 const theme = createMuiTheme({
   overrides: {
@@ -174,12 +175,39 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Customers() {
-  /*
-  useEffect(() => {
-    fetch('http://localhost:5000/api/users')
-      .then(data => console.log(data));
-  });
-  */
+  
+  /*useEffect(() => {
+    Axios.get('http://localhost:5000/api/users').then(response => {console.log(response)});
+    
+    //fetch('http://localhost:5000/api/users')
+    //  .then(data => console.log(data));
+  });*/
+
+    const [data, setData] = useState([]);
+    console.log(data);
+    const [isLoading, setLoading] = useState(true);
+    //const [userCreationData, setUserCreationData] = useState([]);
+    //const [subData, setSubData] = useState([]);
+    //const [orderDateData, setOrderDateData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const result1 = await Axios.get('http://localhost:5000/api/users');
+            //const result2 = await Axios.get('http://localhost:5000/api/subscriptions/getstartdate/10-13-2020');
+
+            setData(result1.data);
+            setLoading(false);
+            setSearch(result1.data);
+            //setSubData(result2.data);
+        };
+        
+        fetchData();
+    }, []);
+
+    console.log(data);
+    //console.log(subData.length);
+
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
@@ -190,9 +218,10 @@ export default function Customers() {
   };
   
   const [search, setSearch] = React.useState(data);
+  console.log(search);
   const setSearchValue = (value) => {
     if (value.length == 0)
-      setSearch(userData);
+      setSearch(data);
     else
       setSearch(getFilteredData(value, data));
   }
@@ -233,6 +262,57 @@ export default function Customers() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+  if (isLoading) {
+    return(
+    <React.Fragment>
+      <ThemeProvider theme = {theme}>
+        <CssBaseline />
+      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+        <Toolbar className={classes.toolbar}>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+            Users
+          </Typography>
+          
+        </Toolbar>
+      </AppBar>
+      
+      <Drawer
+        variant="persistent"
+        classes={{
+          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+        }}
+        open={open}
+      >
+        <div className={classes.toolbarIcon}>
+          <IconButton onClick={handleDrawerClose}>
+            <ChevronLeftIcon />
+          </IconButton>
+        </div>
+        <Divider />
+        <List>{mainListItems}</List>
+        <Divider />
+        </Drawer>
+        <main className={classes.content}>
+        <div className={classes.appBarSpacer} />
+        <Container maxWidth="lg" className={classes.container}>
+          <Grid container spacing={3}>
+      </Grid>
+      </Container>
+      </main>
+      </ThemeProvider>
+    </React.Fragment>
+    );
+  }
 
   return (
     <React.Fragment>
@@ -299,7 +379,7 @@ export default function Customers() {
             </TableRow>
           ))}
         </TableBody>
-        <CSVLink data={userData} filename={"User_Data.csv"} className="btn btn-secondary">
+        <CSVLink data={data} filename={"User_Data.csv"} className="btn btn-secondary">
             Download Data
           </CSVLink>
       </Table>
