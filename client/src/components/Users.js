@@ -33,6 +33,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import TextField from '@material-ui/core/TextField';
 import { CSVLink } from "react-csv";
+import Axios from 'axios';
 
 const theme = createMuiTheme({
   overrides: {
@@ -174,12 +175,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Customers() {
-  /*
+  
   useEffect(() => {
-    fetch('http://localhost:5000/api/users')
-      .then(data => console.log(data));
+    Axios.get('http://localhost:5000/api/users').then(response => {console.log(response)});
+    
+    //fetch('http://localhost:5000/api/users')
+    //  .then(data => console.log(data));
   });
-  */
+  
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
