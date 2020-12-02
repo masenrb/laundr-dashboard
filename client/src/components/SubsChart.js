@@ -13,7 +13,7 @@ var defaultLabels = weekDays;
 
 var RandomOrg = require('random-org');
 
-const Chart = () =>{
+const SubsChart = () =>{
 const [chartData, setChartData] = useState({});
     let default_color  = 'rgba(1, 201, 225, 1)';
 
@@ -28,7 +28,7 @@ const [chartData, setChartData] = useState({});
     console.log(maybe);
     console.log(random_color);
 
-    const chart = () =>{
+    const SubsChart = () =>{
         setChartData({
             labels:defaultLabels, 
             datasets: [{
@@ -39,7 +39,7 @@ const [chartData, setChartData] = useState({});
         })
     }
     useEffect(()=>{
-        chart()
+        SubsChart()
     }, [])
     function updateChartMonth(chart) {
         setChartData({
@@ -66,7 +66,7 @@ const [chartData, setChartData] = useState({});
 return(
     <div>
     <div>
-        <Line data = {chartData} options ={{title:{text: 'New Orders', fontFamily: 'Calmer', fontSize: 25, display: true}}}></Line>
+        <Line data = {chartData} options ={{title:{text: 'New Subscriptions', fontFamily: 'Calmer', fontSize: 25, display: true}}}></Line>
         <button onClick = {updateChart}>Week</button>
         <button onClick = {updateChartMonth}>Month</button>
         </div>
@@ -76,4 +76,4 @@ return(
 }
 
 
-export default Chart;
+export default SubsChart;
