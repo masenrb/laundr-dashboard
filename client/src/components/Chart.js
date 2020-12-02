@@ -1,10 +1,11 @@
 import React, {Component, useEffect, useState} from 'react';
 import {Line} from 'react-chartjs-2';
-import MonthDays, {weekDays, YearDays} from './ChartData';
+import MonthDays, {weekDays, YearDays, OrderDataMonth, OrderDataWeek, OrderDataDefault} from './ChartData';
 
-var WeekData = [2, 4, 6, 8, 3, 4, 4]
-var MonthData = [1, 3, 4, 4, 3, 5, 8, 1, 3, 4, 4, 3, 5, 8, 1, 3, 4, 4, 3, 5, 8, 1, 3, 4, 4, 3, 5, 8, 2, 2]
-var DefaultData = [2, 4, 6, 8, 3, 4, 4] //make sure we have the same data for week and Default
+
+var MonthData = OrderDataMonth;
+var DefaultData = OrderDataDefault; 
+var WeekData = OrderDataWeek;
 var weekLabels = weekDays;
 var monthLabels = MonthDays;
 var defaultLabels = weekDays;
@@ -65,7 +66,7 @@ const [chartData, setChartData] = useState({});
 return(
     <div>
     <div>
-        <Line data = {chartData} options ={{title:{text:'Sales', fontFamily: 'Calmer', fontSize: 25, display: true}}}></Line>
+        <Line data = {chartData} options ={{title:{text: 'Orders', fontFamily: 'Calmer', fontSize: 25, display: true}}}></Line>
         <button onClick = {updateChart}>Week</button>
         <button onClick = {updateChartMonth}>Month</button>
         </div>

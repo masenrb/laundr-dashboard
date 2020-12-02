@@ -1,12 +1,15 @@
+import Order_Data from '../Order_Data.json';
 var MonthDays = []; 
 for(var i = 0; i < 30; i++){
     const today = new Date();
     var dd = today.getDate() - 29 + i;
+    var yyyy = today.getFullYear();
     if(dd <= 0 ){
         var mm = today.getMonth();
         if(mm == 0 ){
             mm = 12;
             dd = dd + 31
+            yyyy = yyyy - 1;
         }
         else if(mm == 1 || mm == 3 || mm == 5 || mm == 7 || mm == 8 || mm == 10){
             dd = 31 + dd;
@@ -16,7 +19,9 @@ for(var i = 0; i < 30; i++){
     }
     else{
     var mm = (today.getMonth() + 1);}
-    var D = mm + '/' + dd;
+    if (mm < 10){var D = dd + '.0' + mm + '.' + yyyy;}
+    else{var D = dd + '.' + mm + '.' + yyyy;}
+    
     console.log(D);
     MonthDays.push(D);
 }
@@ -34,7 +39,22 @@ for(var j = 0; j < 12; j++){
     var D = mm + '/1'; 
     YearDays.push(D);
 }
-
+var OrderDataMonth = Array(MonthDays.length).fill(0);
+for (var j = 0; j < MonthDays.length; j++){  
+    for (var i = 0; i < Order_Data.length; i++){
+        if(Order_Data[i].orderDate === MonthDays[j]){
+            OrderDataMonth[j] = OrderDataMonth[j] + 1;
+        }
+    }
+}
+var OrderDataWeek = [];
+for (var c = 0; c < 7; c++){
+    OrderDataWeek[c] = (OrderDataMonth[23 + c]);
+}
+var OrderDataDefault = [];
+for (var c = 0; c < 7; c++){
+    OrderDataDefault[c] = (OrderDataMonth[23 + c]);
+}
 
 export default MonthDays;
-export {weekDays, YearDays};
+export {weekDays, YearDays, OrderDataMonth, OrderDataWeek, OrderDataDefault};
