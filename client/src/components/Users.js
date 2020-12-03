@@ -8,8 +8,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TablePagination from '@material-ui/core/TablePagination';
 import Title from './Title';
-//import userData from '../User_Data.json';
-//import data from '../User_Data.json';
 import { mainListItems } from '../listItems';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
@@ -196,8 +194,8 @@ export default function Customers() {
             //const result2 = await Axios.get('http://localhost:5000/api/subscriptions/getstartdate/10-13-2020');
 
             setData(result1.data);
-            setLoading(false);
             setSearch(result1.data);
+            setLoading(false);
             //setSubData(result2.data);
         };
         
