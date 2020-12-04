@@ -11,7 +11,7 @@ for(var i = 0; i < 30; i++){
     var dd = today.getDate() - 29 + i;
     var yyyy = today.getFullYear();
     if(dd <= 0 ){
-        var mm = today.getMonth();
+        var mm = today.getMonth() - 1;  //DELETE - 1 TO REVERT TO NORMAL
         if(mm == 0 ){
             mm = 12;
             dd = dd + 31
@@ -23,7 +23,7 @@ for(var i = 0; i < 30; i++){
         else {dd = dd + 30;}
     }
     else{
-    var mm = (today.getMonth() + 1);}
+    var mm = (today.getMonth());} // SHOULD BE + 1 TO REVERT TO NORMAL
     var D = mm + '-' + dd + '-' + yyyy;
     //console.log(D);
     monthStrings.push(D);
@@ -78,7 +78,13 @@ export default function Chart() {
     const [orderMonthData, setOrderMonthData] = useState([]);
     const [monthlyOrders, setMonthlyOrders] = useState([0,0,0,0,0,0,0,0,0,0,0,0]);
     const [allTimeOrders, setAllTimeOrders] = useState([]);
+
     const [testPoundsData, setTestPoundsData] = useState([]);
+    const [noneSubData, setNoneSubData] = useState([]);
+    const [studentSubData, setStudentSubData] = useState([]);
+    const [standardSubData, setStandardSubData] = useState([]);
+    const [plusSubData, setPlusSubData] = useState([]);
+    const [familySubData, setFamilySubData] = useState([]);
     /*
     for (var i = 0; i < 30; i++) {
         monthStrings[i] = [mm + '-' + i + '-' + yyyy];
@@ -86,15 +92,11 @@ export default function Chart() {
     */
     useEffect(() => {
         const fetchData = async () => {
-            //for(var i = 0; i < weekStrings.length; i++) {
-                //const result1 = await Axios.get('http://localhost:5000/api/orders/getdate/' + weekStrings[i]);
-                //setOrderDateData(result1.data);
-                //DefaultData[i] = result1.data.length;
-                //WeekData[i] = result1.data.length;
-            //}
-
-            //uncomment here
+            //strategy: query a specific date like http://localhost:5000/api/subscriptions/getstartdate/10-25-2020
+            //for each entry in the response, check the subscriptionType value and increment the corresponding count
+            //for the subscription type
             
+            /*
             let newArr = [...monthlyOrders];
             for(var i = 0; i < allTimeStrings.length; i++) {
                 const result1 = await Axios.get('http://localhost:5000/api/orders/getdate/' + allTimeStrings[i]);
@@ -113,28 +115,34 @@ export default function Chart() {
                     }
                 }
             }
-            
-            let newArr2 = [...orderMonthData];
+            */
+            let newArr2 = [...standardSubData];
             for(var i = 0; i < monthStrings.length; i++) {
-                const result2 = await Axios.get('http://localhost:5000/api/orders/getdate/' + monthStrings[i]);
+                const result2 = await Axios.get('http://localhost:5000/api/subscriptions/getstartdate/' + monthStrings[i]);
+                console.log(result2.data);
                 if(result2.data[0] == null) {
                     newArr2[i] = 0;
-                    setOrderMonthData(newArr2);
+                    setStandardSubData(newArr2);
                     //setOrderMonthData(orderMonthData => [...orderMonthData, 0]);
                     if(i > 22) {
                         //setOrderWeekData(orderWeekData => [...orderWeekData, 0]);
                         newArr2[i] = 0;
-                        setOrderMonthData(newArr2);
+                        setStandardSubData(newArr2);
                     }
                 }
                 else {
                     for(var j = 0; j < result2.data.length; j++) {
-                    
-                        if(j == 0)
-                            newArr2[i] = result2.data[j].orderWeight;
-                        else
-                            newArr2[i] = newArr2[i] + result2.data[j].orderWeight;
-                        setOrderMonthData(newArr2);
+                    //console.log(result2.data[j].subscriptionType);
+                        if(j == 0) {
+                            if (result2.data[j].subscriptionType === "standard")
+                            newArr2[i] = newArr2[i] + 1;
+                        }
+                        else {
+                            if (result2.data[j].subscriptionType === "standard")
+                            newArr2[i] = newArr2[i] + 1;
+                        }
+                            
+                        setStandardSubData(newArr2);
                         //console.log(newArr2);
                         //setOrderMonthData(orderMonthData => [...orderMonthData, result2.data[0].orderWeight]);
                         //console.log(monthStrings[i] + "     " + result2.data[j].orderWeight)
@@ -156,12 +164,14 @@ export default function Chart() {
         fetchData();
     }, []);
 
+    console.log(standardSubData);
+
     const chart = () =>{
         setChartData({
             labels:weekLabels, 
             datasets: [{
                     data: orderWeekData,
-                    label: 'Pounds Processed',
+                    label: 'Subscriptions',
                     color:['rgba(54, 162, 235, 1.0)'],
                     backgroundColor:['rgba(54, 162, 235, 1.0)'],
                     fill: false,
@@ -178,8 +188,8 @@ export default function Chart() {
         setChartData({
             labels:monthLabels, 
             datasets: [{
-                    data: orderMonthData,
-                    label: 'Pounds Processed Last Month',
+                    data: standardSubData,
+                    label: 'Subscriptions Started Last Month',
                     color:['rgba(54, 162, 235, 1.0)'],
                     backgroundColor:['rgba(54, 162, 235, 1.0)'],
                     fill: false,
@@ -194,7 +204,7 @@ export default function Chart() {
             labels:yearLabels, 
             datasets: [{
                     data: monthlyOrders,
-                    label: 'Pounds Processed Last Year',
+                    label: 'Subscriptions Started Last Year',
                     color:['rgba(54, 162, 235, 1.0)'],
                     backgroundColor:['rgba(54, 162, 235, 1.0)'],
                     fill: false,
@@ -209,7 +219,7 @@ export default function Chart() {
             labels:weekLabels, 
             datasets: [{
                     data: orderWeekData,
-                    label: 'Pounds Processed Last Week',
+                    label: 'Subscriptions Started Last Week',
                     color:['rgba(54, 162, 235, 1.0)'],
                     backgroundColor:['rgba(54, 162, 235, 1.0)'],
                     fill: false,
@@ -222,7 +232,7 @@ export default function Chart() {
 return(
     <div>
         <div>
-        <Line data = {chartData} options ={{title:{text:'Pounds Processed', fontFamily: 'Calmer', fontSize: 25, display: true}}}></Line>
+        <Line data = {chartData} options ={{title:{text:'Subscription Metrics', fontFamily: 'Calmer', fontSize: 25, display: true}}}></Line>
         <button onClick = {updateChart}>Week</button>
         <button onClick = {updateChartMonth}>Month</button>
         <button onClick = {updateChartAllTime}>All Time</button>

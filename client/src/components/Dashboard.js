@@ -21,6 +21,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from '../listItems';
 import Chart from './Chart';
 import PoundsChart from './PoundsChart';
+import SubsChart from './SubsChart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 import Subcription from './Subscription';
@@ -213,15 +214,10 @@ export const Dashboard = () => {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            {/* Chart */}
+            {/* Chart */} /*
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={graphHeightPaper}>
-                <Chart />
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={graphHeightPaper}>
-                <PoundsChart />
+                <SubsChart />
               </Paper>
             </Grid>
             {/* Quick Look*/}
