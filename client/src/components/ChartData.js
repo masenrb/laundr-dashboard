@@ -3,7 +3,7 @@ import Subscription_Data from '../Subscription_Data.json';
 var MonthDays = []; 
 var SubsMonthDays = [];
 for(var i = 0; i < 30; i++){
-    const today = new Date();
+    const today = new Date(2020, 10, 4);
     var dd = today.getDate() - 29 + i;
     var yyyy = today.getFullYear();
     if(dd <= 0 ){
