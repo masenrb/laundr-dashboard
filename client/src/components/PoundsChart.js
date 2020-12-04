@@ -43,9 +43,6 @@ for(var j = 0; j < 12; j++){
     newYearDays.push(D);
 }
 
-//var WeekData = [];
-//var MonthData = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-//var DefaultData = [2, 4, 6, 8, 3, 4, 4] //make sure we have the same data for week and Default
 var weekLabels = weekDays;
 var monthLabels = MonthDays;
 var yearLabels = [];
@@ -55,8 +52,6 @@ var dd = String(today.getDate());
 var mm = String(today.getMonth() + 1); //January is 0!
 var yyyy = today.getFullYear();
 today = mm + '-' + dd + '-' + yyyy;
-//console.log(today);
-//console.log(weekStrings);
 
 var daysArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
 var monthsArray = [1,2,3,4,5,6,7,8,9,10,11,12];
@@ -79,12 +74,10 @@ for (var i = 0; i < yearsArray.length; i++) {
 //console.log(allTimeStrings);
 export default function Chart() {
     const [chartData, setChartData] = useState({});
-    const [userCreationData, setUserCreationData] = useState([]);
-    const [subData, setSubData] = useState([]);
     const [orderWeekData, setOrderWeekData] = useState([]);
     const [orderMonthData, setOrderMonthData] = useState([]);
-    const [allTimeOrders, setAllTimeOrders] = useState([]);
     const [monthlyOrders, setMonthlyOrders] = useState([0,0,0,0,0,0,0,0,0,0,0,0]);
+    const [allTimeOrders, setAllTimeOrders] = useState([]);
     const [testPoundsData, setTestPoundsData] = useState([]);
     /*
     for (var i = 0; i < 30; i++) {
@@ -100,74 +93,75 @@ export default function Chart() {
                 //WeekData[i] = result1.data.length;
             //}
 
-           
+            //uncomment here
+            
             let newArr = [...monthlyOrders];
             for(var i = 0; i < allTimeStrings.length; i++) {
                 const result1 = await Axios.get('http://localhost:5000/api/orders/getdate/' + allTimeStrings[i]);
-                setAllTimeOrders(allTimeOrders => [...allTimeOrders, result1.data.length]);
-                if (result1.data.length != 0) {
-                    let newIndex = parseInt(allTimeStrings[i].substr(0,allTimeStrings[i].indexOf('-')));
-                    //let newArr = [...monthlyOrders];
-                    newArr[newIndex-1] = newArr[newIndex-1] + 1;
-                    //console.log(newArr);
-                    setMonthlyOrders(newArr);
+                for(var j = 0; j < result1.data.length; j++) {
+                    if(result1.data[0] == null) {
+                        setAllTimeOrders(allTimeOrders => [...allTimeOrders, 0]);
+                    }
+                    else {
+                        setAllTimeOrders(allTimeOrders => [...allTimeOrders, result1.data[j].orderWeight]);
+                        console.log(allTimeStrings[i] + "     " + result1.data[j].orderWeight)
+                    }
+                    if (result1.data.length != 0) {
+                        let newIndex = parseInt(allTimeStrings[i].substr(0,allTimeStrings[i].indexOf('-')));
+                        newArr[newIndex-1] = newArr[newIndex-1] + result1.data[j].orderWeight;
+                        setMonthlyOrders(newArr);
+                    }
                 }
             }
             
-            
+            let newArr2 = [...orderMonthData];
             for(var i = 0; i < monthStrings.length; i++) {
                 const result2 = await Axios.get('http://localhost:5000/api/orders/getdate/' + monthStrings[i]);
-                //setOrderMonthData(result2.data);
-                setOrderMonthData(orderMonthData => [...orderMonthData, result2.data.length]);
-                if(i > 22)
-                    setOrderWeekData(orderWeekData => [...orderWeekData, result2.data.length]);
+                if(result2.data[0] == null) {
+                    newArr2[i] = 0;
+                    setOrderMonthData(newArr2);
+                    //setOrderMonthData(orderMonthData => [...orderMonthData, 0]);
+                    if(i > 22) {
+                        //setOrderWeekData(orderWeekData => [...orderWeekData, 0]);
+                        newArr2[i] = 0;
+                        setOrderMonthData(newArr2);
+                    }
+                }
+                else {
+                    for(var j = 0; j < result2.data.length; j++) {
+                    
+                        if(j == 0)
+                            newArr2[i] = result2.data[j].orderWeight;
+                        else
+                            newArr2[i] = newArr2[i] + result2.data[j].orderWeight;
+                        setOrderMonthData(newArr2);
+                        //console.log(newArr2);
+                        //setOrderMonthData(orderMonthData => [...orderMonthData, result2.data[0].orderWeight]);
+                        //console.log(monthStrings[i] + "     " + result2.data[j].orderWeight)
+                        if(i > 22) {
+                            setOrderWeekData(orderWeekData => [...orderWeekData, newArr2[i]]);
+                        }
+                        
+                    }
+                }
                 
-                //MonthData[i] = result2.data.length;
             }
-            //const result2 = await Axios.get('http://localhost:5000/api/subscriptions/getstartdate/10-13-2020');
-            //const result3 = await Axios.get('http://localhost:5000/api/orders/getdate/8-20-2010')
-            const testResult = await Axios.get('http://localhost:5000/api/orders/getdate/11-13-2020');
-            //setTestPoundsData(testPoundsData => [...testPoundsData, testResult.data]);
-            setTestPoundsData(testResult.data)
-
-
+/*
             for (var i = 0; i < 7; i++){
                 orderWeekData[i] = orderMonthData[23 + i];
             } 
-
-            //setSubData(result2.data);
-            
+  */          
         };
         
         fetchData();
     }, []);
-    //console.log(orderMonthData);
-    /*
-    console.log(monthStrings[3][0]);
-    for (var i = 0; i < monthStrings.length; i++) {
-        for (var j = 0; j < orderMonthData.length; j++) {
-            if (monthStrings[i][0].stringify == orderMonthData[j].orderDate)
-                console.log("match found for " + monthStrings[i])
-        }
-    }
-    console.log(MonthData);
-    
-    for (var i = 0; i < orderMonthData.length; i++) {
-        if (orderMonthData[i].orderDate == "11-18-2020")
-            console.log("success");
-    } */
-    //console.log(userCreationData.length);
-    //console.log(subData.length);
-    //console.log(orderDateData.length);
-    if (testPoundsData[0] != null)
-        console.log(testPoundsData[0].orderWeight);
 
     const chart = () =>{
         setChartData({
             labels:weekLabels, 
             datasets: [{
                     data: orderWeekData,
-                    label: 'Orders',
+                    label: 'Pounds Processed',
                     color:['rgba(54, 162, 235, 1.0)'],
                     backgroundColor:['rgba(54, 162, 235, 1.0)'],
                     fill: false,
@@ -185,7 +179,7 @@ export default function Chart() {
             labels:monthLabels, 
             datasets: [{
                     data: orderMonthData,
-                    label: 'Orders Last Month',
+                    label: 'Pounds Processed Last Month',
                     color:['rgba(54, 162, 235, 1.0)'],
                     backgroundColor:['rgba(54, 162, 235, 1.0)'],
                     fill: false,
@@ -200,7 +194,7 @@ export default function Chart() {
             labels:yearLabels, 
             datasets: [{
                     data: monthlyOrders,
-                    label: 'Orders Last Year',
+                    label: 'Pounds Processed Last Year',
                     color:['rgba(54, 162, 235, 1.0)'],
                     backgroundColor:['rgba(54, 162, 235, 1.0)'],
                     fill: false,
@@ -215,7 +209,7 @@ export default function Chart() {
             labels:weekLabels, 
             datasets: [{
                     data: orderWeekData,
-                    label: 'Orders Last Week',
+                    label: 'Pounds Processed Last Week',
                     color:['rgba(54, 162, 235, 1.0)'],
                     backgroundColor:['rgba(54, 162, 235, 1.0)'],
                     fill: false,
@@ -228,7 +222,7 @@ export default function Chart() {
 return(
     <div>
         <div>
-        <Line data = {chartData} options ={{title:{text:'Orders Processed', fontFamily: 'Calmer', fontSize: 25, display: true}}}></Line>
+        <Line data = {chartData} options ={{title:{text:'Pounds Processed', fontFamily: 'Calmer', fontSize: 25, display: true}}}></Line>
         <button onClick = {updateChart}>Week</button>
         <button onClick = {updateChartMonth}>Month</button>
         <button onClick = {updateChartAllTime}>All Time</button>

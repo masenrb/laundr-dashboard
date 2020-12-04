@@ -25,7 +25,7 @@ for(var i = 0; i < 30; i++){
     else{
     var mm = (today.getMonth() + 1);}
     var D = mm + '/' + dd;
-    console.log(D);
+    //console.log(D);
     MonthDays.push(D);
 }
 var weekDays = [];

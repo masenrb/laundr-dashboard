@@ -20,6 +20,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from '../listItems';
 import Chart from './Chart';
+import PoundsChart from './PoundsChart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 import Subcription from './Subscription';
@@ -216,6 +217,11 @@ export const Dashboard = () => {
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={graphHeightPaper}>
                 <Chart />
+              </Paper>
+            </Grid>
+            <Grid item xs={12} md={8} lg={9}>
+              <Paper className={graphHeightPaper}>
+                <PoundsChart />
               </Paper>
             </Grid>
             {/* Quick Look*/}

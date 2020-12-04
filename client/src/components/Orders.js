@@ -161,7 +161,7 @@ export default function Orders() {
   };
 
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(25);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -285,7 +285,7 @@ export default function Orders() {
           </CSVLink>
       </Table>
       <TablePagination
-        rowsPerPageOptions={[5, 10, 50, 100, 250, 500]}
+        rowsPerPageOptions={[10, 25, 50, 100, 250, 500]}
         component="div"
         count={search.length}
         rowsPerPage={rowsPerPage}
