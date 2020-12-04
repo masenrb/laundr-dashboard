@@ -66,7 +66,7 @@ const [chartData, setChartData] = useState({});
 return(
     <div>
     <div>
-        <Line data = {chartData} options ={{title:{text: 'New Subscriptions', fontFamily: 'Calmer', fontSize: 25, display: true}}}></Line>
+        <Line data = {chartData} options ={{title:{text: 'Total Active Subscriptions', fontFamily: 'Calmer', fontSize: 25, display: true}}}></Line>
         <button onClick = {updateChart}>Week</button>
         <button onClick = {updateChartMonth}>Month</button>
         </div>

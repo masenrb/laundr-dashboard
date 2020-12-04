@@ -3,7 +3,7 @@ import Subscription_Data from '../Subscription_Data.json';
 var MonthDays = []; 
 var SubsMonthDays = [];
 for(var i = 0; i < 30; i++){
-    const today = new Date();
+    const today = new Date(2020, 9, 30);
     var dd = today.getDate() - 29 + i;
     var yyyy = today.getFullYear();
     if(dd <= 0 ){
@@ -78,13 +78,16 @@ for (var j = 0; j < SubsMonthDays.length; j++){
         var stringday = string.substr(firstS+ 1, secondS -3);
         var stringyear = string.substr(secondS+1);
          if(parseInt(stringyear) < parseInt(monthyear)){
-            SubsDataMonth[j] = SubsDataMonth[j] + 1;}
+             if(Subscription_Data[i].isActive){
+            SubsDataMonth[j] = SubsDataMonth[j] + 1;}}
         else if (parseInt(stringyear) === parseInt(monthyear)){
              if(parseInt(stringmonth) < parseInt(monthmonth)){
-                SubsDataMonth[j] = SubsDataMonth[j] + 1;}
+                if(Subscription_Data[i].isActive){
+                    SubsDataMonth[j] = SubsDataMonth[j] + 1;}}
              else if(parseInt(stringmonth) === parseInt(monthmonth)){
                if(parseInt(stringday) <= parseInt(monthday)){
-                    SubsDataMonth[j] = SubsDataMonth[j] + 1;}
+                if(Subscription_Data[i].isActive){
+                    SubsDataMonth[j] = SubsDataMonth[j] + 1;}}
         }}
     }
 }
