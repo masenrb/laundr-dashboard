@@ -3,7 +3,7 @@ import Subscription_Data from '../Subscription_Data.json';
 var MonthDays = []; 
 var SubsMonthDays = [];
 for(var i = 0; i < 30; i++){
-    const today = new Date(2020, 9, 30);
+    const today = new Date();
     var dd = today.getDate() - 29 + i;
     var yyyy = today.getFullYear();
     if(dd <= 0 ){
@@ -45,16 +45,45 @@ for(var j = 0; j < 12; j++){
     YearDays.push(D);
 }
 var OrderDataMonth = Array(MonthDays.length).fill(0);
+var PoundDataMonth = Array(MonthDays.length).fill(0);
 for (var j = 0; j < MonthDays.length; j++){  
+    var order =  MonthDays[j];
+    var firsto =  order.indexOf('.');
+    var orderday = order.substr(0, firsto);
+    var secondo = order.indexOf('.', firsto + 1);
+    var ordermonth = order.substr(firsto + 1, firsto +1);
+    if (ordermonth.length > 2){ordermonth = ordermonth.substr(0,2);}
+    var orderyear = order.substr(secondo+1);
+    //MonthDays[j] = ordermonth;
     for (var i = 0; i < Order_Data.length; i++){
         if(Order_Data[i].orderDate === MonthDays[j]){
             OrderDataMonth[j] = OrderDataMonth[j] + 1;
         }
+        var orderi =  Order_Data[i].orderDate;
+    var firstoi =  orderi.indexOf('.');
+    var orderdayi = orderi.substr(0, firstoi);
+    var secondoi = orderi.indexOf('.', firstoi + 1);
+    var ordermonthi = orderi.substr(firstoi+ 1, firstoi + 1);
+    if (ordermonthi.length > 2){ordermonthi = ordermonthi.substr(0,2);}
+    var orderyeari = orderi.substr(secondoi+1);
+if(parseInt(orderyeari) < parseInt(orderyear)){
+    PoundDataMonth[j] = PoundDataMonth[j] + Order_Data[i].orderWeight;
+}
+else if(parseInt(orderyeari) === parseInt(orderyear)){
+    if(parseInt(ordermonthi) < parseInt(ordermonth)){
+        PoundDataMonth[j] = PoundDataMonth[j] + Order_Data[i].orderWeight;
+    }
+    else if(parseInt(ordermonthi) === parseInt(ordermonth)){
+        if(parseInt(orderdayi) <= parseInt(orderday)){
+            PoundDataMonth[j] = PoundDataMonth[j] + Order_Data[i].orderWeight;
+        }}}
     }
 }
 var OrderDataWeek = [];
+var PoundDataWeek = [];
 for (var c = 0; c < 7; c++){
     OrderDataWeek[c] = (OrderDataMonth[23 + c]);
+    PoundDataWeek[c] = (PoundDataMonth[23 + c]);
 }
 var OrderDataDefault = [];
 for (var c = 0; c < 7; c++){
@@ -98,4 +127,4 @@ for (var c = 0; c < 7; c++){
 }
 
 export default MonthDays;
-export {weekDays, YearDays, OrderDataMonth, OrderDataWeek, OrderDataDefault, SubsDataMonth, SubsMonthDays, SubsDataWeek, SubsweekDays};
+export {weekDays, YearDays, OrderDataMonth, OrderDataWeek, OrderDataDefault, SubsDataMonth, SubsMonthDays, SubsDataWeek, SubsweekDays, PoundDataMonth, PoundDataWeek};
