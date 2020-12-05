@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -8,8 +8,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TablePagination from '@material-ui/core/TablePagination';
 import Title from './Title';
-import subData from '../Subscription_Data.json';
-import data from '../Subscription_Data.json';
 import { mainListItems } from '../listItems';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
@@ -30,6 +28,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { CSVLink } from "react-csv";
+import Axios from 'axios';
 
 function preventDefault(event) {
   event.preventDefault();
@@ -147,6 +146,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Subscriptions() {
+
+  const [data, setData] = useState([]);
+  console.log(data);
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+      const fetchData = async () => {
+          const result1 = await Axios.get('http://localhost:5000/api/subscriptions');
+          setData(result1.data);
+          setSearch(result1.data);
+          setLoading(false);
+      }; 
+      fetchData();
+  }, []);
+
+  console.log(data);
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
@@ -159,7 +175,7 @@ export default function Subscriptions() {
   const [search, setSearch] = React.useState(data);
   const setSearchValue = (value) => {
     if (value.length == 0)
-      setSearch(subData);
+      setSearch(data);
     else
       setSearch(getFilteredData(value, data));
   }
@@ -200,6 +216,55 @@ export default function Subscriptions() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+  if(isLoading){
+    return (
+      <React.Fragment>
+        <ThemeProvider theme = {theme}>
+          <CssBaseline />
+        <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+          <Toolbar className={classes.toolbar}>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+              Subscriptions
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          variant="persistent"
+          classes={{
+            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+          }}
+          open={open}
+        >
+          <div className={classes.toolbarIcon}>
+            <IconButton onClick={handleDrawerClose}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </div>
+          <Divider />
+          <List>{mainListItems}</List>
+          <Divider />
+          </Drawer>
+          <main className={classes.content}>
+          <div className={classes.appBarSpacer} />
+          <Container maxWidth="lg" className={classes.container}>
+            <Grid container spacing={3}>
+        </Grid>
+        </Container>
+        </main>
+        </ThemeProvider>
+      </React.Fragment>
+    );
+  }
 
   return (
     <React.Fragment>
@@ -272,7 +337,7 @@ export default function Subscriptions() {
             </TableRow>
           ))}
         </TableBody>
-        <CSVLink data={subData} filename={"Subscription_Data.csv"} className="btn btn-secondary">
+        <CSVLink data={data} filename={"Subscription_Data.csv"} className="btn btn-secondary">
             Download Data
           </CSVLink>
       </Table>

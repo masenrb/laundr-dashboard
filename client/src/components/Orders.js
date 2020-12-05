@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,8 +12,6 @@ import Title from './Title';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import orderData from '../Order_Data.json';
-import data from '../Order_Data.json'
 import { mainListItems } from '../listItems';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
@@ -149,7 +147,22 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Orders() {
 
-  Axios.get('http://localhost:5000/api/orders/getDate/12-6-2016/').then(response => {console.log(response)});
+  const [data, setData] = useState([]);
+  console.log(data);
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+      const fetchData = async () => {
+          const result1 = await Axios.get('http://localhost:5000/api/orders');
+          setData(result1.data);
+          setSearch(result1.data);
+          setLoading(false);
+      }; 
+      fetchData();
+  }, []);
+
+  console.log(data);
+
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -175,7 +188,7 @@ export default function Orders() {
   const [search, setSearch] = React.useState(data);
   const setSearchValue = (value) => {
     if (value.length == 0)
-      setSearch(orderData);
+      setSearch(data);
     else
       setSearch(getFilteredData(value, data));
   }
@@ -203,6 +216,55 @@ export default function Orders() {
       return results;
     }
     return results;
+  }
+
+  if(isLoading){
+    return (
+      <React.Fragment>
+        <ThemeProvider theme = {theme}>
+          <CssBaseline />
+        <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+          <Toolbar className={classes.toolbar}>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+              Orders
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          variant="persistent"
+          classes={{
+            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+          }}
+          open={open}
+        >
+          <div className={classes.toolbarIcon}>
+            <IconButton onClick={handleDrawerClose}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </div>
+          <Divider />
+          <List>{mainListItems}</List>
+          <Divider />
+          </Drawer>
+          <main className={classes.content}>
+          <div className={classes.appBarSpacer} />
+          <Container maxWidth="lg" className={classes.container}>
+            <Grid container spacing={3}>
+        </Grid>
+        </Container>
+        </main>
+        </ThemeProvider>
+      </React.Fragment>
+    );
   }
 
   return (
@@ -280,7 +342,7 @@ export default function Orders() {
             </TableRow>
           ))}
         </TableBody>
-        <CSVLink data={orderData} filename={"Order_Data.csv"} className="btn btn-secondary">
+        <CSVLink data={data} filename={"Order_Data.csv"} className="btn btn-secondary">
             Download Data
           </CSVLink>
       </Table>
