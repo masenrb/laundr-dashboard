@@ -1,21 +1,22 @@
 import React, {Component, useEffect, useState} from 'react';
 import {Line} from 'react-chartjs-2';
-import{calculationHoursDay, SubsMonthDays, SubsweekDays, YearOrderData, YearDays, OrderDataDay, OrderDataMonth, OrderDataWeek, OrderDataDefault} from './ChartData';
+import  { calculationHoursDay,  SubsMonthDays, SubsweekDays, YearPoundData, YearDays, PoundDataDefault,  PoundDataMonth, PoundDataWeek, PoundDataDay} from './ChartData';
 
-var hoursData = OrderDataDay;
+var hoursData = PoundDataDay;
 var hoursLabels = calculationHoursDay;
-var MonthData = OrderDataMonth;
-var DefaultData = OrderDataDefault; 
-var WeekData = OrderDataWeek;
+var MonthData = PoundDataMonth;
+var DefaultData = PoundDataDefault; 
+var WeekData = PoundDataWeek;
 var weekLabels = SubsweekDays;
 var monthLabels = SubsMonthDays;
 var defaultLabels = SubsweekDays;
-var YearData = YearOrderData;
+var YearData = YearPoundData;
 var YearLabels = YearDays;
+
 
 var RandomOrg = require('random-org');
 
-const Chart = () =>{
+const UsersChart = () =>{
 const [chartData, setChartData] = useState({});
     let default_color  = 'rgba(1, 201, 225, 1)';
 
@@ -30,11 +31,11 @@ const [chartData, setChartData] = useState({});
     console.log(maybe);
     console.log(random_color);*/
 
-    const chart = () =>{
+    const UsersChart = () =>{
         setChartData({
             labels:defaultLabels, 
             datasets: [{
-                label: 'Orders',
+                label: 'Pounds',
                     data: DefaultData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: default_color,
@@ -43,13 +44,13 @@ const [chartData, setChartData] = useState({});
         })
     }
     useEffect(()=>{
-        chart()
+        UsersChart()
     }, [])
     function updateChartMonth(chart) {
         setChartData({
             labels:monthLabels, 
             datasets: [{
-                label: 'Orders Last 30 Days',
+                label: 'Pounds Last 30 Days',
                     data: MonthData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: default_color,
@@ -62,7 +63,7 @@ const [chartData, setChartData] = useState({});
         setChartData({
             labels:weekLabels, 
             datasets: [{
-                label: 'Orders Last Week',
+                label: 'Pounds This Week',
                     data: WeekData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: default_color,
@@ -74,7 +75,7 @@ const [chartData, setChartData] = useState({});
         setChartData({
             labels:hoursLabels, 
             datasets: [{
-                label: 'Orders Each Hour',
+                label: 'Pounds Each Hour',
                     data: hoursData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: default_color,
@@ -86,7 +87,7 @@ const [chartData, setChartData] = useState({});
         setChartData({
             labels:YearLabels, 
             datasets: [{
-                label: 'Orders Each Year',
+                label: 'Pounds Each Year',
                     data: YearData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: default_color,
@@ -94,11 +95,10 @@ const [chartData, setChartData] = useState({});
             ]
         })
     }
-    
 return(
     <div>
     <div>
-        <Line data = {chartData} options ={{title:{text: 'New Orders', fontFamily: 'Calmer', fontSize: 25, display: true}}}></Line>
+        <Line data = {chartData} options ={{title:{text: 'LBS of Laundry', fontFamily: 'Calmer', fontSize: 25, display: true}}}></Line>
         <button onClick = {updateChartHours}>Hours</button>
         <button onClick = {updateChart}>Week</button>
         <button onClick = {updateChartMonth}>Month</button>
@@ -110,4 +110,4 @@ return(
 }
 
 
-export default Chart;
+export default UsersChart;

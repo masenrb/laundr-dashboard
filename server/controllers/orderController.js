@@ -216,3 +216,22 @@ exports.readByName = async (req, res) => {
       });
     });
 };
+
+exports.readByDate = async (req, res) => {
+  let tempOrder = req.params.orderDate;
+  console.log(tempOrder);
+  await Order.find({ orderDate: tempOrder })
+    .then((order) => {
+      if (!order) {
+        return res.status(200).send({
+          error: "Order not found with date: " + tempOrder,
+        });
+      }
+      res.json(order);
+    })
+    .catch((err) => {
+      res.status(200).send({
+        error: err.message || "An unknown error has occurred.",
+      });
+    });
+};
