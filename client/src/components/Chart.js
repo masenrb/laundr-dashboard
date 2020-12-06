@@ -8,29 +8,24 @@ var weekLabels = ['1/1', '1/2', '1/3', '1/4', '1/5', '1/6', '1/7']
 var monthLabels = ['1/1', '2/1', '3/1', '4/1', '5/1', '6/1', '7/1']
 var defaultLabels = ['1/1', '2/1', '3/1', '4/1', '5/1', '6/1', '7/1']
 
-var RandomOrg = require('random-org');
+var Random = require('yy-random');
+var array = [5, 180 + Random.get(40), 205 + Random.get(50)];
+
+var btn = document.createElement("button");
+btn.className = "defaultButton";
+btn.backgroundColor = "#AA0212"
 
 const Chart = () =>{
 const [chartData, setChartData] = useState({});
-    let default_color  = 'rgba(1, 201, 225, 1)';
-
-    var random = new RandomOrg({ apiKey: '15aa22b5-8b99-444f-9287-4e704cfe66b0' });
-    let maybe = random.generateIntegers({ min: 0, max: 255, n: 3 })
-        .then(function(result) {
-            console.log(result.random.data); // [55, 3]
-        });
-
-    let random_color = random.generateIntegers({ min: 0, max: 255, n: 3 });
-    console.log(random);
-    console.log(maybe);
-    console.log(random_color);
+    let default_color  = 'rgba(' + array[0] + ', ' + array[1] + ', ' + array[2] + ', 1)';
+    console.log(default_color);
 
     const chart = () =>{
         setChartData({
             labels:defaultLabels, 
             datasets: [{
                     data: DefaultData,
-                    backgroundColor:['rgba(54, 162, 235, 0.0)'],
+                    backgroundColor:[default_color],
                 }
             ]
         })
@@ -44,7 +39,7 @@ const [chartData, setChartData] = useState({});
             datasets: [{
                     label: 'Sales',
                     data: MonthData,
-                    backgroundColor:['rgba(54, 162, 235, 0.0)'],
+                    backgroundColor:[default_color],
                 }
             ]
         })
@@ -56,7 +51,7 @@ const [chartData, setChartData] = useState({});
             datasets: [{
                     label: 'Sales',
                     data: WeekData,
-                    backgroundColor:['rgba(54, 162, 235, 0.0)'],
+                    backgroundColor:[default_color],
                 }
             ]
         })
@@ -66,8 +61,8 @@ return(
     <div>
     <div>
         <Line data = {chartData} options ={{title:{text:'Sales', fontFamily: 'Calmer', fontSize: 25, display: true}}}></Line>
-        <button onClick = {updateChart}>Week</button>
-        <button onClick = {updateChartMonth}>Month</button>
+        <button class = "defaultButton" onClick = {updateChart}>Week</button>
+        <button class = "defaultButton" onClick = {updateChartMonth}>Month</button>
         </div>
     </div>
 )
