@@ -23,7 +23,7 @@ var RandomOrg = require('random-org');
 
 const SubsChart = () =>{
 const [chartData, setChartData] = useState({});
-    let default_color  = 'rgba(1, 201, 225, 1)';
+    
 
     /*var random = new RandomOrg({ apiKey: '15aa22b5-8b99-444f-9287-4e704cfe66b0' });
     let maybe = random.generateIntegers({ min: 0, max: 255, n: 3 })
@@ -43,7 +43,7 @@ const [chartData, setChartData] = useState({});
                     data: DefaultData,
                     label: "All New Subscribers",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
-                    borderColor: default_color,
+                    borderColor: ['rgba(1, 201, 225, 1)'],
                 }
             ]
         })
@@ -58,7 +58,7 @@ const [chartData, setChartData] = useState({});
                     data: MonthData,
                     label: "All New Subscribers",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
-                    borderColor: default_color,
+                    borderColor: ['rgba(1, 201, 225, 1)'],
                 }, 
                 {
                     data: StudentData,
@@ -95,8 +95,8 @@ const [chartData, setChartData] = useState({});
                     data: WeekData,
                     label: "All New Subscribers",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
-                    borderColor: default_color,
-                }, 
+                    borderColor: ['rgba(1, 201, 225, 1)'],
+                }/*, 
                 {
                     data: wstu,
                     label: "Student Plan",
@@ -120,7 +120,7 @@ const [chartData, setChartData] = useState({});
                     label: "Plus Plan",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: ['rgba(0, 200, 235, 1)'],
-                } 
+                } */
             ]
         })
     }
