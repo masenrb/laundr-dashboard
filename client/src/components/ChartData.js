@@ -215,8 +215,10 @@ var PlusDataWeek = [];
 var FamilyDataWeek = [];
 var StandardDataWeek = [];
 var StudentDataWeek = [];
+var DefaultStudent = [];
 for (var c = 0; c < 7; c++){
     SubsDataWeek[c] = (SubsDataMonth[23 + c]);
+    DefaultStudent[c] = (SubsDataMonth[23 + c]);
     PlusDataWeek[c] = SubsPlusData[23 + c];
     StudentDataWeek[c] = SubsStudentData[23 + c];
     FamilyDataWeek[c] = SubsFamilyData[23 + c];
@@ -224,4 +226,4 @@ for (var c = 0; c < 7; c++){
 }
 
 export default MonthDays;
-export {StudentDataWeek, FamilyDataWeek, StandardDataWeek, PlusDataWeek, calculationHoursDay, weekDays, YearOrderData, YearPoundData, YearDays, OrderDataDay, PoundDataMonth, PoundDataWeek, OrderDataMonth, OrderDataWeek, OrderDataDefault, PoundDataDefault, SubsDataMonthCompunded, SubsMonthDays, SubsDataWeek, SubsweekDays, SubsDataMonth, PoundDataMonthCompounded, PoundDataWeekCompounded, PoundDataDay, SubsFamilyData, SubsPlusData, SubsStandardData, SubsStudentData };
+export {StudentDataWeek, FamilyDataWeek, StandardDataWeek, PlusDataWeek, DefaultStudent, calculationHoursDay, weekDays, YearOrderData, YearPoundData, YearDays, OrderDataDay, PoundDataMonth, PoundDataWeek, OrderDataMonth, OrderDataWeek, OrderDataDefault, PoundDataDefault, SubsDataMonthCompunded, SubsMonthDays, SubsDataWeek, SubsweekDays, SubsDataMonth, PoundDataMonthCompounded, PoundDataWeekCompounded, PoundDataDay, SubsFamilyData, SubsPlusData, SubsStandardData, SubsStudentData };

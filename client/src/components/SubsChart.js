@@ -1,18 +1,22 @@
 import React, {Component, useEffect, useState} from 'react';
 import {Line} from 'react-chartjs-2';
-import  { YearDays, SubsDataMonth, SubsMonthDays, SubsDataWeek, SubsweekDays, SubsFamilyData, SubsPlusData, SubsStandardData, SubsStudentData} from './ChartData';
+import  { StudentDataWeek, FamilyDataWeek, StandardDataWeek, PlusDataWeek, DefaultStudent, YearDays, SubsDataMonth, SubsMonthDays, SubsDataWeek, SubsweekDays, SubsFamilyData, SubsPlusData, SubsStandardData, SubsStudentData} from './ChartData';
 
 
 var MonthData = SubsDataMonth;
-var DefaultData = SubsDataWeek; 
+var DefaultData = DefaultStudent; 
 var WeekData = SubsDataWeek;
 var weekLabels = SubsweekDays;
 var monthLabels = SubsMonthDays;
 var defaultLabels = SubsweekDays;
 var StudentData = SubsStudentData;
-var StandardData = SubsStudentData;
-var FamilyData = SubsStudentData;
-var PlusData = SubsStudentData;
+var StandardData = SubsStandardData;
+var FamilyData = SubsFamilyData;
+var PlusData = SubsPlusData;
+var wstu = StudentDataWeek ;
+var wsta = StandardDataWeek ;
+var wfam = FamilyDataWeek ;
+var wplu = PlusDataWeek ;
 
 
 var RandomOrg = require('random-org');
@@ -52,8 +56,34 @@ const [chartData, setChartData] = useState({});
             labels:monthLabels, 
             datasets: [{
                     data: MonthData,
+                    label: "All New Subscribers",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
-                }
+                    borderColor: default_color,
+                }, 
+                {
+                    data: StudentData,
+                    label: "Student Plan",
+                    backgroundColor:['rgba(54, 162, 235, 0.0)'],
+                    borderColor: ['rgba(154, 162, 235, 1)'],
+                },
+                {
+                    data: FamilyData,
+                    label: "Family Plan",
+                    backgroundColor:['rgba(54, 162, 235, 0.0)'],
+                    borderColor: ['rgba(54, 162, 235, 1)'],
+                }, 
+                {
+                    data: StandardData,
+                    label: "Standard Plan",
+                    backgroundColor:['rgba(54, 162, 235, 0.0)'],
+                    borderColor: ['rgba(200, 162, 235, 1)'],
+                }, 
+                {
+                    data: PlusData,
+                    label: "Plus Plan",
+                    backgroundColor:['rgba(54, 162, 235, 0.0)'],
+                    borderColor: ['rgba(0, 200, 235, 1)'],
+                }  
             ]
         })
         
@@ -63,8 +93,34 @@ const [chartData, setChartData] = useState({});
             labels:weekLabels, 
             datasets: [{
                     data: WeekData,
+                    label: "All New Subscribers",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
-                }
+                    borderColor: default_color,
+                }, 
+                {
+                    data: wstu,
+                    label: "Student Plan",
+                    backgroundColor:['rgba(54, 162, 235, 0.0)'],
+                    borderColor: ['rgba(154, 162, 235, 1)'],
+                },
+                {
+                    data: wfam,
+                    label: "Family Plan",
+                    backgroundColor:['rgba(54, 162, 235, 0.0)'],
+                    borderColor: ['rgba(54, 162, 235, 1)'],
+                }, 
+                {
+                    data: wsta,
+                    label: "Standard Plan",
+                    backgroundColor:['rgba(54, 162, 235, 0.0)'],
+                    borderColor: ['rgba(200, 162, 235, 1)'],
+                }, 
+                {
+                    data: wplu,
+                    label: "Plus Plan",
+                    backgroundColor:['rgba(54, 162, 235, 0.0)'],
+                    borderColor: ['rgba(0, 200, 235, 1)'],
+                } 
             ]
         })
     }
