@@ -4,7 +4,7 @@ var MonthDays = [];
 var SubsMonthDays = [];
 var hoursDay = [];
 var calculationHoursDay = [];
-const today = new Date(2014, 0, 30);
+const today = new Date();
 //Calculates and stores the year, month, and day
 for(var i = 0; i < 30; i++){
     var dd = today.getDate() - 29 + i;
@@ -139,19 +139,19 @@ for (var j = 0; j < SubsMonthDays.length; j++){
         if(SubsMonthDays[j] === Subscription_Data[i].startDate){
             if(Subscription_Data[i].subscriptionType == "family"){
                 SubsFamilyData[j] = SubsFamilyData[j] + 1;
-                SubsDataMonth[j] =SubsDataMonth[j] + 1;
+                SubsDataMonth[j] = SubsDataMonth[j] + 1;
             }
             else if(Subscription_Data[i].subscriptionType == "standard"){
                 SubsStandardData[j] = SubsStandardData[j] + 1;
-                SubsDataMonth[j] =SubsDataMonth[j] + 1;
+                SubsDataMonth[j] = SubsDataMonth[j] + 1;
             }
             else if(Subscription_Data[i].subscriptionType == "plus"){
                 SubsPlusData[j] = SubsPlusData[j] + 1;
-                SubsDataMonth[j] =SubsDataMonth[j] + 1;
+                SubsDataMonth[j] = SubsDataMonth[j] + 1;
             }
             else if(Subscription_Data[i].subscriptionType == "student"){
                 SubsStudentData[j] = SubsStudentData[j] + 1;
-                SubsDataMonth[j] =SubsDataMonth[j] + 1;
+                SubsDataMonth[j] = SubsDataMonth[j] + 1;
             }
         }
         var string = Subscription_Data[i].startDate;
@@ -182,6 +182,34 @@ for(var i = 0; i < YearDays.length; i++){
         if(YearDays[i] === Order_Data[j].orderDate.substr(Order_Data[j].orderDate.length - 4)){
             YearOrderData[i] = YearOrderData[i] + 1;
             YearPoundData[i] = YearPoundData[i] + Order_Data[j].orderWeight;
+        }
+    }
+}
+
+var yearTotalSubs = Array(YearDays.length).fill(0);
+var yearStudentSubs = Array(YearDays.length).fill(0);
+var yearFamilySubs = Array(YearDays.length).fill(0);
+var yearPlusSubs = Array(YearDays.length).fill(0);
+var yearStandardSubs = Array(YearDays.length).fill(0);
+for(var i = 0; i < YearDays.length; i++){
+    for(var j = 0; j < Subscription_Data.length; j++){
+        if(YearDays[i] === Subscription_Data[j].startDate.substr(Subscription_Data[j].startDate.length - 4)){
+            if(Subscription_Data[j].subscriptionType == "family"){
+                yearTotalSubs[i] = yearTotalSubs[i] + 1;
+                yearFamilySubs[i] = yearFamilySubs[i] + 1;
+            }
+            else if(Subscription_Data[j].subscriptionType == "standard"){
+                yearTotalSubs[i] = yearTotalSubs[i] + 1;
+                yearStandardSubs[i] = yearStandardSubs[i] + 1;
+            }
+            else if(Subscription_Data[j].subscriptionType == "plus"){
+                yearTotalSubs[i] = yearTotalSubs[i] + 1;
+                yearPlusSubs[i] = yearPlusSubs[i] + 1;
+            }
+            else if(Subscription_Data[j].subscriptionType == "student"){
+                yearTotalSubs[i] = yearTotalSubs[i] + 1;
+                yearStudentSubs[i] = yearStudentSubs[i] + 1;
+            }
         }
     }
 }
@@ -226,4 +254,4 @@ for (var c = 0; c < 7; c++){
 }
 
 export default MonthDays;
-export {StudentDataWeek, FamilyDataWeek, StandardDataWeek, PlusDataWeek, DefaultStudent, calculationHoursDay, weekDays, YearOrderData, YearPoundData, YearDays, OrderDataDay, PoundDataMonth, PoundDataWeek, OrderDataMonth, OrderDataWeek, OrderDataDefault, PoundDataDefault, SubsDataMonthCompunded, SubsMonthDays, SubsDataWeek, SubsweekDays, SubsDataMonth, PoundDataMonthCompounded, PoundDataWeekCompounded, PoundDataDay, SubsFamilyData, SubsPlusData, SubsStandardData, SubsStudentData };
+export {StudentDataWeek, FamilyDataWeek, StandardDataWeek, PlusDataWeek, DefaultStudent, calculationHoursDay, weekDays, YearOrderData, YearPoundData, yearTotalSubs, YearDays, OrderDataDay, PoundDataMonth, PoundDataWeek, OrderDataMonth, OrderDataWeek, OrderDataDefault, PoundDataDefault,  SubsMonthDays, SubsDataWeek, SubsweekDays, SubsDataMonth,  PoundDataDay, SubsFamilyData, SubsPlusData, SubsStandardData, SubsStudentData, yearFamilySubs, yearPlusSubs, yearStandardSubs, yearStudentSubs };

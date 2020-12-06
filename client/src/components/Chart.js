@@ -34,6 +34,7 @@ const [chartData, setChartData] = useState({});
         setChartData({
             labels:defaultLabels, 
             datasets: [{
+                label: 'Orders',
                     data: DefaultData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: default_color,
@@ -48,6 +49,7 @@ const [chartData, setChartData] = useState({});
         setChartData({
             labels:monthLabels, 
             datasets: [{
+                label: 'Orders Last 30 Days',
                     data: MonthData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: default_color,
@@ -60,6 +62,7 @@ const [chartData, setChartData] = useState({});
         setChartData({
             labels:weekLabels, 
             datasets: [{
+                label: 'Orders Last Week',
                     data: WeekData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: default_color,
@@ -71,6 +74,7 @@ const [chartData, setChartData] = useState({});
         setChartData({
             labels:hoursLabels, 
             datasets: [{
+                label: 'Orders Each Hour',
                     data: hoursData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: default_color,
@@ -82,6 +86,7 @@ const [chartData, setChartData] = useState({});
         setChartData({
             labels:YearLabels, 
             datasets: [{
+                label: 'Orders Each Year',
                     data: YearData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: default_color,
