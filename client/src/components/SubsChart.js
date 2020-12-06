@@ -1,6 +1,6 @@
 import React, {Component, useEffect, useState} from 'react';
 import {Line} from 'react-chartjs-2';
-import  { YearDays,SubsDataMonth, SubsMonthDays, SubsDataWeek, SubsweekDays} from './ChartData';
+import  { YearDays, SubsDataMonth, SubsMonthDays, SubsDataWeek, SubsweekDays} from './ChartData';
 
 
 var MonthData = SubsDataMonth;
