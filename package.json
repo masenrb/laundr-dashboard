@@ -35,7 +35,8 @@
     "random-org": "^2.1.0",
     "react-csv": "^2.0.3",
     "should": "^13.2.3",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "yy-random": "^1.10.1"
   },
   "homepage": "https://github.com/UFWebApps/React_Template_Repo#readme"
 }
