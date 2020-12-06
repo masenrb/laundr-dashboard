@@ -13,6 +13,7 @@ orderRouter.get('/getnumber/:orderNumber', orderController.readByOrderNumber);
 orderRouter.get('/getaddress/:customerAddress', orderController.readByAddress);
 orderRouter.get('/getstatus/:orderStatus', orderController.readByStatus);
 orderRouter.get('/getweight/:orderWeight', orderController.readByWeight);
+orderRouter.get('/getdate/:orderDate', orderController.readByDate);
 
 
 module.exports = orderRouter;

@@ -2,6 +2,7 @@ const path = require('path'),
     express = require('express'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
+    cors = require('cors'),
     bodyParser = require('body-parser'),
     userRouter = require('../routes/userRouter'),
     orderRouter = require('../routes/orderRouter'),
@@ -21,6 +22,7 @@ module.exports.init = () => {
     // initialize app
     const app = express();
 
+    app.use(cors());
     // enable request logging for development debugging
     app.use(morgan('dev'));
 
