@@ -84,7 +84,7 @@ for (var j = 0; j < MonthDays.length; j++){
     for (var i = 0; i < Order_Data.length; i++){
         if(Order_Data[i].orderDate === MonthDays[j]){
             OrderDataMonth[j] = OrderDataMonth[j] + 1;
-            PoundDataMonth[j] = PoundDataMonth[j] + Order_Data[j].orderWeight;
+            PoundDataMonth[j] = PoundDataMonth[j] + Order_Data[i].orderWeight;
         }
         var orderi =  Order_Data[i].orderDate;
     var firstoi =  orderi.indexOf('-');
