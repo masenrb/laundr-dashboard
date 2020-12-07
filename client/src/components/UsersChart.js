@@ -39,6 +39,7 @@ const [chartData, setChartData] = useState({});
                     data: DefaultData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: default_color,
+                    lineTension: 0.1,
                 }
             ]
         })
@@ -54,6 +55,7 @@ const [chartData, setChartData] = useState({});
                     data: MonthData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: default_color,
+                    lineTension: 0.1,
                 }
             ]
         })
@@ -67,6 +69,7 @@ const [chartData, setChartData] = useState({});
                     data: WeekData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: default_color,
+                    lineTension: 0.1,
                 }
             ]
         })
@@ -79,6 +82,7 @@ const [chartData, setChartData] = useState({});
                     data: hoursData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: default_color,
+                    lineTension: 0.1,
                 }
             ]
         })
@@ -91,6 +95,7 @@ const [chartData, setChartData] = useState({});
                     data: YearData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: default_color,
+                    lineTension: 0.1,
                 }
             ]
         })

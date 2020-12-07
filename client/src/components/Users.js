@@ -170,6 +170,15 @@ const useStyles = makeStyles((theme) => ({
   graphHeight: {
     height: 500,
   },
+  paperPadding: {
+    padding: '20px'
+  },
+  searchBar: {
+    padding: '10px'
+  },
+  csvlink: {
+    padding: '10px'
+  }
 }));
 
 export default function Customers() {
@@ -355,17 +364,18 @@ export default function Customers() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             
-        <Paper elevation={3}>
+        <Paper elevation={3} className={classes.paperPadding}>
       <Title>Current Users</Title>
+      <Divider />
       <form className={classes.root}>
-      <TextField id="outlined-basic" label="Search..." variant="outlined" onChange={(e) => setSearchValue(e.target.value)}/>
+      <TextField className={classes.searchBar} id="outlined-basic" label="Search..." variant="outlined" onChange={(e) => setSearchValue(e.target.value)}/>
             </form>
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Username</TableCell>
-            <TableCell>Email</TableCell>
-            <TableCell>Date Account Created</TableCell>
+            <TableCell><b>Username</b></TableCell>
+            <TableCell><b>Email</b></TableCell>
+            <TableCell><b>Account Creation Date</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -378,7 +388,7 @@ export default function Customers() {
           ))}
         </TableBody>
         <CSVLink data={data} filename={"User_Data.csv"} className="btn btn-secondary">
-            Download Data
+            Download CSV Data
           </CSVLink>
       </Table>
       <TablePagination

@@ -37,19 +37,19 @@ for(var i = 0; i < 24; i++){
     var hhh = today.getHours() - 23 + i;
     if(hhh <= 0){
         hhh = hhh + 23;
-        var D = (ddd - 1) + '-' + hhh;
+        var D = (mmm + 1) + '/' + (ddd - 1) + ' ' + hhh;
         hoursDay.push(D)
-        if(hhh > 12){var H = (ddd - 1) + '-' + (hhh - 12) + "PM";
+        if(hhh > 12){var H = (mmm + 1) + '/' + (ddd - 1) + ' ' + (hhh - 12) + "PM";
         calculationHoursDay.push(H);}
-        else{ var H = (ddd - 1) + '-' + (hhh) + "AM";
+        else{ var H = (mmm + 1) + '/' + (ddd - 1) + ' ' + (hhh) + "AM";
             calculationHoursDay.push(H);}
     }
     else{
-        var D = ddd + '-' + hhh;
+        var D = (mmm + 1) + '/' + ddd + ' ' + hhh;
         hoursDay.push(D)
-        if(hhh > 12){var H = (ddd) + '-' + (hhh - 12) + "PM";
+        if(hhh > 12){var H = (mmm + 1) + '/' + (ddd) + ' ' + (hhh - 12) + "PM";
         calculationHoursDay.push(H);}
-        else{ var H = (ddd) + '-' + (hhh) + "AM";
+        else{ var H = (mmm + 1) + '/' + (ddd) + ' ' + (hhh) + "AM";
             calculationHoursDay.push(H);}
     }
 }

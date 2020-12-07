@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 const Navigation = () => {
     return (
         <div>
-            <NavLink to="/logout">Sign Out</NavLink>
+            <NavLink to="/logout" style={{color: 'white', textDecoration: 'none'}}>Sign Out</NavLink>
         </div>
     );
 }

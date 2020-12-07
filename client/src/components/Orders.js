@@ -143,6 +143,15 @@ const useStyles = makeStyles((theme) => ({
   graphHeight: {
     height: 500,
   },
+  paperPadding: {
+    padding: '20px'
+  },
+  searchBar: {
+    padding: '10px'
+  },
+  csvlink: {
+    padding: '10px'
+  }
 }));
 
 export default function Orders() {
@@ -307,23 +316,24 @@ export default function Orders() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             
-        <Paper elevation={3}>
+        <Paper elevation={3} className={classes.paperPadding}>
       <Title>Current Orders</Title>
+      <Divider />
       <form className={classes.root}>
-      <TextField id="outlined-basic" label="Search..." variant="outlined" onChange={(e) => setSearchValue(e.target.value)}/>
+      <TextField className={classes.searchBar} id="outlined-basic" label="Search..." variant="outlined" onChange={(e) => setSearchValue(e.target.value)}/>
             </form>
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Order Number</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Pickup Time</TableCell>
-            <TableCell>Delivery Time</TableCell>
-            <TableCell>Driver Name</TableCell>
-            <TableCell>Customer Address</TableCell>
-            <TableCell>Order Status</TableCell>
-            <TableCell>Order Weight</TableCell>
-            <TableCell>Order Date</TableCell>
+            <TableCell><b>Order Number</b></TableCell>
+            <TableCell><b>Name</b></TableCell>
+            <TableCell><b>Pickup Time</b></TableCell>
+            <TableCell><b>Delivery Time</b></TableCell>
+            <TableCell><b>Driver Name</b></TableCell>
+            <TableCell><b>Customer Address</b></TableCell>
+            <TableCell><b>Order Status</b></TableCell>
+            <TableCell><b>Order Weight</b></TableCell>
+            <TableCell><b>Order Date</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -341,8 +351,8 @@ export default function Orders() {
             </TableRow>
           ))}
         </TableBody>
-        <CSVLink data={data} filename={"Order_Data.csv"} className="btn btn-secondary">
-            Download Data
+        <CSVLink className={classes.csvlink} data={data} filename={"Order_Data.csv"} className="btn btn-secondary">
+            Download CSV Data
           </CSVLink>
       </Table>
       <TablePagination

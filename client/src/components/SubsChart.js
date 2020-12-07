@@ -50,6 +50,7 @@ const [chartData, setChartData] = useState({});
                     label: "All Active Subscribers",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: ['rgba(1, 201, 225, 1)'],
+                    lineTension: 0.1,
                 }
             ]
         })
@@ -65,30 +66,35 @@ const [chartData, setChartData] = useState({});
                     label: "All Active Subscribers",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: ['rgba(1, 201, 225, 1)'],
+                    lineTension: 0.1,
                 }, 
                 {
                     data: StudentData,
                     label: "Student Plan",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: ['rgba(154, 162, 235, 1)'],
+                    lineTension: 0.1,
                 },
                 {
                     data: FamilyData,
                     label: "Family Plan",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: ['rgba(54, 162, 235, 1)'],
+                    lineTension: 0.1,
                 }, 
                 {
                     data: StandardData,
                     label: "Standard Plan",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: ['rgba(200, 162, 235, 1)'],
+                    lineTension: 0.1,
                 }, 
                 {
                     data: PlusData,
                     label: "Plus Plan",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: ['rgba(0, 200, 235, 1)'],
+                    lineTension: 0.1,
                 }  
             ]
         })
@@ -102,30 +108,35 @@ const [chartData, setChartData] = useState({});
                     label: "All Active Subscribers",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: ['rgba(1, 201, 225, 1)'],
+                    lineTension: 0.1,
                 }, 
                 {
                     data: wstu,
                     label: "Week Student Plan",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: ['rgba(154, 162, 235, 1)'],
+                    lineTension: 0.1,
                 },
                 {
                     data: wfam,
                     label: "Week Family Plan",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: ['rgba(54, 162, 235, 1)'],
+                    lineTension: 0.1,
                 }, 
                 {
                     data: wsta,
                     label: "Week Standard Plan",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: ['rgba(200, 162, 235, 1)'],
+                    lineTension: 0.1,
                 }, 
                 {
                     data: wplu,
                     label: "Week Plus Plan",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: ['rgba(0, 200, 235, 1)'],
+                    lineTension: 0.1,
                 } 
             ]
         })
@@ -139,30 +150,35 @@ const [chartData, setChartData] = useState({});
                     label: "All Active Subscribers",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: ['rgba(1, 201, 225, 1)'],
+                    lineTension: 0.1,
                 }, 
                 {
                     data: yearstudent,
                     label: "All Time Student Plan",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: ['rgba(154, 162, 235, 1)'],
+                    lineTension: 0.1,
                 },
                 {
                     data: yearfamily,
                     label: "All Time Family Plan",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: ['rgba(54, 162, 235, 1)'],
+                    lineTension: 0.1,
                 }, 
                 {
                     data: yearstandard,
                     label: "All Time Standard Plan",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: ['rgba(200, 162, 235, 1)'],
+                    lineTension: 0.1,
                 }, 
                 {
                     data: yearplus,
                     label: "All Time Plus Plan",
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
-                    borderColor: ['rgba(0, 200, 235, 1)'],
+                    borderColor: ['rgba(50, 0, 235, 1)'],
+                    lineTension: 0.1,
                 } 
             ]
         })

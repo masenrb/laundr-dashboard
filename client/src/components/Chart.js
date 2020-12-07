@@ -14,7 +14,8 @@ var YearData = YearOrderData;
 var YearLabels = YearDays;
 
 var Random = require('yy-random');
-var array = [5, 180 + Random.get(40), 205 + Random.get(50)];
+//var array = [5, 180 + Random.get(40), 205 + Random.get(50)];
+var array = [Random.get(255), Random.get(255), Random.get(255)];
 
 var btn = document.createElement("button");
 btn.className = "defaultButton";
@@ -31,7 +32,7 @@ const [chartData, setChartData] = useState({});
             datasets: [{
                 label: 'Orders',
                     data: DefaultData,
-                    backgroundColor:[default_color],
+                    backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: default_color,
                 }
             ]
@@ -46,8 +47,9 @@ const [chartData, setChartData] = useState({});
             datasets: [{
                 label: 'Orders Last 30 Days',
                     data: MonthData,
-                    backgroundColor:[default_color],
+                    backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: default_color,
+                    lineTension: 0.1,
                 }
             ]
         })
@@ -59,8 +61,9 @@ const [chartData, setChartData] = useState({});
             datasets: [{
                 label: 'Orders Last Week',
                     data: WeekData,
-                    backgroundColor:[default_color],
+                    backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: default_color,
+                    lineTension: 0.1,
                 }
             ]
         })
@@ -73,6 +76,7 @@ const [chartData, setChartData] = useState({});
                     data: hoursData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: default_color,
+                    lineTension: 0.1,
                 }
             ]
         })
@@ -85,6 +89,7 @@ const [chartData, setChartData] = useState({});
                     data: YearData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
                     borderColor: default_color,
+                    lineTension: 0.1,
                 }
             ]
         })

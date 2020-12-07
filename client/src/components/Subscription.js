@@ -143,6 +143,15 @@ const useStyles = makeStyles((theme) => ({
   graphHeight: {
     height: 500,
   },
+  paperPadding: {
+    padding: '20px'
+  },
+  searchBar: {
+    padding: '10px'
+  },
+  csvlink: {
+    padding: '10px'
+  }
 }));
 
 export default function Subscriptions() {
@@ -307,21 +316,22 @@ export default function Subscriptions() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             
-        <Paper elevation={3}>
+        <Paper elevation={3} className={classes.paperPadding}>
       <Title>Current Subscribers</Title>
+      <Divider />
       <form className={classes.root}>
-      <TextField id="outlined-basic" label="Search..." variant="outlined" onChange={(e) => setSearchValue(e.target.value)}/>
+      <TextField className={classes.searchBar} id="outlined-basic" label="Search..." variant="outlined" onChange={(e) => setSearchValue(e.target.value)}/>
             </form>
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Active Status</TableCell>
-            <TableCell>Subscription Type</TableCell>
-            <TableCell>Start Date</TableCell>
-            <TableCell>Renewal Date</TableCell>
-            <TableCell>Max Lbs.</TableCell>
-            <TableCell>Current Lbs.</TableCell>
+            <TableCell><b>Name</b></TableCell>
+            <TableCell><b>Active Status</b></TableCell>
+            <TableCell><b>Subscription Type</b></TableCell>
+            <TableCell><b>Start Date</b></TableCell>
+            <TableCell><b>Renewal Date</b></TableCell>
+            <TableCell><b>Max Lbs.</b></TableCell>
+            <TableCell><b>Current Lbs.</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -337,8 +347,8 @@ export default function Subscriptions() {
             </TableRow>
           ))}
         </TableBody>
-        <CSVLink data={data} filename={"Subscription_Data.csv"} className="btn btn-secondary">
-            Download Data
+        <CSVLink className={classes.csvlink} data={data} filename={"Subscription_Data.csv"} className="btn btn-secondary">
+            Download CSV Data
           </CSVLink>
       </Table>
       <TablePagination
