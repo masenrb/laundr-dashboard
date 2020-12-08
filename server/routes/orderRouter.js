@@ -9,8 +9,7 @@ orderRouter.get('/getordernumber/:orderNumber', orderController.readByOrderNumbe
 orderRouter.get('/getname/:name', orderController.readByName);
 orderRouter.get('/gettime/:pickupTime', orderController.readByPickupTime);
 orderRouter.get('/getdrivername/:driverName', orderController.readByDriverName);
-orderRouter.get('/getnumber/:orderNumber', orderController.readByOrderNumber);
-orderRouter.get('/getaddress/:customerAddress', orderController.readByAddress);
+orderRouter.get('/getaddress/:address', orderController.readByAddress);
 orderRouter.get('/getstatus/:orderStatus', orderController.readByStatus);
 orderRouter.get('/getweight/:orderWeight', orderController.readByWeight);
 orderRouter.get('/getdate/:orderDate', orderController.readByDate);
