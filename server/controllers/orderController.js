@@ -169,7 +169,7 @@ exports.readByStatus = async (req, res) => {
 };
 
 exports.readByWeight = async (req, res) => {
-  let tempOrder = req.params.weight;
+  let tempOrder = req.params.orderWeight;
   await Order.find({ orderWeight: tempOrder })
     .then((order) => {
       if (!order) {
