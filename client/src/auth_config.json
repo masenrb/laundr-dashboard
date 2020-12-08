@@ -1,6 +1,6 @@
 {
     "domain": "laundr.us.auth0.com",
     "clientId": "FwORROHAq4835S11eucrJuAZD7w4Fc08",
-    "appOrigin": "http://localhost:3000/home",
-    "redirectUri": "http://localhost:3000/home"
+    "appOrigin": "https://laundr-admin.herokuapp.com/",
+    "redirectUri": "https://laundr-admin.herokuapp.com/"
   }
