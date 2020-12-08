@@ -20,17 +20,6 @@ const UsersChart = () =>{
 const [chartData, setChartData] = useState({});
     let default_color  = 'rgba(1, 201, 225, 1)';
 
-    /*var random = new RandomOrg({ apiKey: '15aa22b5-8b99-444f-9287-4e704cfe66b0' });
-    let maybe = random.generateIntegers({ min: 0, max: 255, n: 3 })
-        .then(function(result) {
-            console.log(result.random.data); // [55, 3]
-        });
-
-    let random_color = random.generateIntegers({ min: 0, max: 255, n: 3 });
-    console.log(random);
-    console.log(maybe);
-    console.log(random_color);*/
-
     const UsersChart = () =>{
         setChartData({
             labels:defaultLabels, 
