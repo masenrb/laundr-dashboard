@@ -105,3 +105,60 @@ exports.readByStartDate = async (req, res) => {
       });
     });
 };
+
+exports.readByRenewalDate = async (req, res) => {
+  let tempSub = req.params.renewalDate;
+  console.log(tempSub);
+  await Subscription.find({ renewalDate: tempSub })
+    .then((subscription) => {
+      if (!subscription) {
+        return res.status(200).send({
+          error: "Subscription not found with start date: " + tempSub,
+        });
+      }
+      res.json(subscription);
+    })
+    .catch((err) => {
+      res.status(200).send({
+        error: err.message || "An unknown error has occurred.",
+      });
+    });
+};
+
+exports.readByMaxPounds = async (req, res) => {
+  let tempSub = req.params.maxPounds;
+  console.log(tempSub);
+  await Subscription.find({ maxLbs: tempSub })
+    .then((subscription) => {
+      if (!subscription) {
+        return res.status(200).send({
+          error: "Subscription not found with start date: " + tempSub,
+        });
+      }
+      res.json(subscription);
+    })
+    .catch((err) => {
+      res.status(200).send({
+        error: err.message || "An unknown error has occurred.",
+      });
+    });
+};
+
+exports.readByCurrentPounds = async (req, res) => {
+  let tempSub = req.params.currentPounds;
+  console.log(tempSub);
+  await Subscription.find({ currentLbs: tempSub })
+    .then((subscription) => {
+      if (!subscription) {
+        return res.status(200).send({
+          error: "Subscription not found with start date: " + tempSub,
+        });
+      }
+      res.json(subscription);
+    })
+    .catch((err) => {
+      res.status(200).send({
+        error: err.message || "An unknown error has occurred.",
+      });
+    });
+};

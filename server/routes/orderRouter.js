@@ -7,7 +7,8 @@ orderRouter.get('/:orderId', orderController.readByID); //Look at later
 orderRouter.post('/', orderController.create);
 orderRouter.get('/getordernumber/:orderNumber', orderController.readByOrderNumber);
 orderRouter.get('/getname/:name', orderController.readByName);
-orderRouter.get('/gettime/:pickupTime', orderController.readByPickupTime);
+orderRouter.get('/getpickuptime/:pickupTime', orderController.readByPickupTime);
+orderRouter.get('/getdelierytime/:deliveryTime', orderController.readByDeliveryTime);
 orderRouter.get('/getdrivername/:driverName', orderController.readByDriverName);
 orderRouter.get('/getaddress/:address', orderController.readByAddress);
 orderRouter.get('/getstatus/:orderStatus', orderController.readByStatus);
