@@ -162,7 +162,7 @@ export default function Orders() {
 
   useEffect(() => {
       const fetchData = async () => {
-          const result1 = await Axios.get('http://localhost:5000/api/orders');
+          const result1 = await Axios.get('https://laundr-admin.herokuapp.com/api/orders');
           setData(result1.data);
           setSearch(result1.data);
           setLoading(false);

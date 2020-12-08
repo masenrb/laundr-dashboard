@@ -162,7 +162,7 @@ export default function Subscriptions() {
 
   useEffect(() => {
       const fetchData = async () => {
-          const result1 = await Axios.get('http://localhost:5000/api/subscriptions');
+          const result1 = await Axios.get('https://laundr-admin.herokuapp.com/api/subscriptions');
           setData(result1.data);
           setSearch(result1.data);
           setLoading(false);

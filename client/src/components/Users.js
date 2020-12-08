@@ -183,36 +183,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Customers() {
   
-  /*useEffect(() => {
-    Axios.get('http://localhost:5000/api/users').then(response => {console.log(response)});
-    
-    //fetch('http://localhost:5000/api/users')
-    //  .then(data => console.log(data));
-  });*/
 
-    const [data, setData] = useState([]);
-    console.log(data);
-    const [isLoading, setLoading] = useState(true);
-    //const [userCreationData, setUserCreationData] = useState([]);
-    //const [subData, setSubData] = useState([]);
-    //const [orderDateData, setOrderDateData] = useState([]);
+  const [data, setData] = useState([]);
+  console.log(data);
+  const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
-            const result1 = await Axios.get('http://localhost:5000/api/users');
-            //const result2 = await Axios.get('http://localhost:5000/api/subscriptions/getstartdate/10-13-2020');
+            const result1 = await Axios.get('https://laundr-admin.herokuapp.com/api/users');
 
             setData(result1.data);
             setSearch(result1.data);
             setLoading(false);
-            //setSubData(result2.data);
         };
         
         fetchData();
     }, []);
 
     console.log(data);
-    //console.log(subData.length);
 
 
   const classes = useStyles();
