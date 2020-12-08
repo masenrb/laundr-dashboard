@@ -14,7 +14,8 @@ var YearData = YearOrderData;
 var YearLabels = YearDays;
 
 var Random = require('yy-random');
-var array = [5, 180 + Random.get(40), 205 + Random.get(50)];
+//var array = [5, 180 + Random.get(40), 205 + Random.get(50)];
+var array = [Random.get(255), Random.get(255), Random.get(255)];
 
 var btn = document.createElement("button");
 btn.className = "defaultButton";
@@ -22,7 +23,7 @@ btn.backgroundColor = "#AA0212"
 
 const Chart = () =>{
 const [chartData, setChartData] = useState({});
-    let default_color  = 'rgba(' + array[0] + ', ' + array[1] + ', ' + array[2] + ', 1)';
+    let default_color  = 'rgba(' + array[1] + ', ' + array[0] + ', ' + array[2] + ', 1)';
     console.log(default_color);
 
     const chart = () =>{
@@ -31,8 +32,8 @@ const [chartData, setChartData] = useState({});
             datasets: [{
                 label: 'Orders',
                     data: DefaultData,
-                    backgroundColor:[default_color],
-                    borderColor: default_color,
+                    backgroundColor:['rgba(54, 162, 235, 0.0)'],
+                    borderColor: 'rgba(' + Random.get(255) + ', ' + Random.get(255) + ', ' + Random.get(255) + ', 1)',
                 }
             ]
         })
@@ -46,8 +47,9 @@ const [chartData, setChartData] = useState({});
             datasets: [{
                 label: 'Orders Last 30 Days',
                     data: MonthData,
-                    backgroundColor:[default_color],
-                    borderColor: default_color,
+                    backgroundColor:['rgba(54, 162, 235, 0.0)'],
+                    borderColor: 'rgba(' + Random.get(255) + ', ' + Random.get(255) + ', ' + Random.get(255) + ', 1)',
+                    lineTension: 0.1,
                 }
             ]
         })
@@ -59,8 +61,9 @@ const [chartData, setChartData] = useState({});
             datasets: [{
                 label: 'Orders Last Week',
                     data: WeekData,
-                    backgroundColor:[default_color],
-                    borderColor: default_color,
+                    backgroundColor:['rgba(54, 162, 235, 0.0)'],
+                    borderColor: 'rgba(' + Random.get(255) + ', ' + Random.get(255) + ', ' + Random.get(255) + ', 1)',
+                    lineTension: 0.1,
                 }
             ]
         })
@@ -72,7 +75,8 @@ const [chartData, setChartData] = useState({});
                 label: 'Orders Each Hour',
                     data: hoursData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
-                    borderColor: default_color,
+                    borderColor: 'rgba(' + Random.get(255) + ', ' + Random.get(255) + ', ' + Random.get(255) + ', 1)',
+                    lineTension: 0.1,
                 }
             ]
         })
@@ -84,7 +88,8 @@ const [chartData, setChartData] = useState({});
                 label: 'Orders Each Year',
                     data: YearData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
-                    borderColor: default_color,
+                    borderColor: 'rgba(' + Random.get(255) + ', ' + Random.get(255) + ', ' + Random.get(255) + ', 1)',
+                    lineTension: 0.1,
                 }
             ]
         })

@@ -14,7 +14,7 @@ var YearData = YearPoundData;
 var YearLabels = YearDays;
 
 
-var RandomOrg = require('random-org');
+var Random = require('yy-random');
 
 const UsersChart = () =>{
 const [chartData, setChartData] = useState({});
@@ -38,7 +38,8 @@ const [chartData, setChartData] = useState({});
                 label: 'Pounds',
                     data: DefaultData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
-                    borderColor: default_color,
+                    borderColor: 'rgba(' + Random.get(255) + ', ' + Random.get(255) + ', ' + Random.get(255) + ', 1)',
+                    lineTension: 0.1,
                 }
             ]
         })
@@ -53,7 +54,8 @@ const [chartData, setChartData] = useState({});
                 label: 'Pounds Last 30 Days',
                     data: MonthData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
-                    borderColor: default_color,
+                    borderColor: 'rgba(' + Random.get(255) + ', ' + Random.get(255) + ', ' + Random.get(255) + ', 1)',
+                    lineTension: 0.1,
                 }
             ]
         })
@@ -66,7 +68,8 @@ const [chartData, setChartData] = useState({});
                 label: 'Pounds This Week',
                     data: WeekData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
-                    borderColor: default_color,
+                    borderColor: 'rgba(' + Random.get(255) + ', ' + Random.get(255) + ', ' + Random.get(255) + ', 1)',
+                    lineTension: 0.1,
                 }
             ]
         })
@@ -78,7 +81,8 @@ const [chartData, setChartData] = useState({});
                 label: 'Pounds Each Hour',
                     data: hoursData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
-                    borderColor: default_color,
+                    borderColor: 'rgba(' + Random.get(255) + ', ' + Random.get(255) + ', ' + Random.get(255) + ', 1)',
+                    lineTension: 0.1,
                 }
             ]
         })
@@ -90,7 +94,8 @@ const [chartData, setChartData] = useState({});
                 label: 'Pounds Each Year',
                     data: YearData,
                     backgroundColor:['rgba(54, 162, 235, 0.0)'],
-                    borderColor: default_color,
+                    borderColor: 'rgba(' + Random.get(255) + ', ' + Random.get(255) + ', ' + Random.get(255) + ', 1)',
+                    lineTension: 0.1,
                 }
             ]
         })

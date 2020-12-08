@@ -46,16 +46,16 @@ const theme = createMuiTheme({
   },
   palette: {
      primary: {
-        main: "#01C9E1" // This is an orange looking color
+        main: "#01C9E1" 
                },
      secondary: {
-        main: "##676767" //Another orange-ish color
+        main: "##676767" 
                 },
      background: {
         default: '#f9f9f9',
      }
            },
-fontFamily: 'Calmer' // as an aside, highly recommend importing roboto font for Material UI projects! Looks really nice
+fontFamily: 'Calmer'
 });
 
 function Copyright() {
@@ -151,7 +151,7 @@ const useStyles = makeStyles((theme) => ({
     height: 240,
   },
   graphHeight: {
-    height: 500,
+    height: 480,
   },
 }));
 
@@ -189,7 +189,7 @@ export const Dashboard = () => {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
+            Laundr Admin Panel
           </Typography>
         </Toolbar>
       </AppBar>
@@ -208,7 +208,6 @@ export const Dashboard = () => {
         <Divider />
         <List>{mainListItems}</List>
         <Divider />
-        <List>{secondaryListItems}</List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
