@@ -151,7 +151,7 @@ exports.readByAddress = async (req, res) => {
 };
 
 exports.readByStatus = async (req, res) => {
-  let tempOrder = req.params.status;
+  let tempOrder = req.params.orderStatus;
   await Order.find({ orderStatus: tempOrder })
     .then((order) => {
       if (!order) {
