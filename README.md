@@ -23,4 +23,8 @@ We are creating an admin portal to display information from a MongoDB database. 
   * Benjamin Bement
   
 ###### Links:
-* Google Drive: https://drive.google.com/drive/folders/1GbL-LMcz82c-0MW__LjmxB419B6Bxaq0?usp=sharing
+* Heroku: https://laundr-admin.herokuapp.com/
+* YouTube:
+ * Test Plan - https://www.youtube.com/watch?v=lV7DXm8VPrY
+ * Presentation - https://www.youtube.com/watch?v=EjHT6verisQ
+
