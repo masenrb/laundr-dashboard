@@ -25,6 +25,6 @@ We are creating an admin portal to display information from a MongoDB database. 
 ###### Links:
 * Heroku: https://laundr-admin.herokuapp.com/
 * YouTube:
- * Test Plan - https://www.youtube.com/watch?v=lV7DXm8VPrY
- * Presentation - https://www.youtube.com/watch?v=EjHT6verisQ
+  * Test Plan - https://www.youtube.com/watch?v=lV7DXm8VPrY
+  * Presentation - https://www.youtube.com/watch?v=EjHT6verisQ
 
