@@ -1,4 +1,4 @@
-# l4undrm@
+# L4undrm@
 CEN3031 Group Project
 
 We are creating an admin portal to display information from a MongoDB database.  The portal contains a dashboard that displays various graphs with company data, and data tables for Users, Subscriptions, and Order Data from the company.  Side menu navigation is implemented to make navigating through the website smooth and intuitive.  The site is password-protected using Auth0.
