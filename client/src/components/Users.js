@@ -254,7 +254,7 @@ export default function Customers() {
   };
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
+    setRowsPerPage(parseInt(event.target.value, 25));
     setPage(0);
   };
 
@@ -380,7 +380,7 @@ export default function Customers() {
           </CSVLink>
       </Table>
       <TablePagination
-        rowsPerPageOptions={[5, 10, 50, 100, 250, 500]}
+        rowsPerPageOptions={[10, 25, 50, 100, 250, 500]}
         component="div"
         count={search.length}
         rowsPerPage={rowsPerPage}
