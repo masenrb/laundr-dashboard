@@ -1,7 +1,7 @@
-# laundrmat
-CEN Group Project
+# l4undrm@
+CEN3031 Group Project
 
-Creating an admin portal to display information from a mysql database.
+We are creating an admin portal to display information from a MongoDB database.  The portal contains a dashboard that displays various graphs with company data, and data tables for Users, Subscriptions, and Order Data from the company.  Side menu navigation is implemented to make navigating through the website smooth and intuitive.  The site is password-protected using Auth0.
 
 ###### Tech stack used:
 * MondoDB
@@ -24,4 +24,3 @@ Creating an admin portal to display information from a mysql database.
   
 ###### Links:
 * Google Drive: https://drive.google.com/drive/folders/1GbL-LMcz82c-0MW__LjmxB419B6Bxaq0?usp=sharing
-* Trello: https://trello.com/b/EyDiYPxv/laundr
